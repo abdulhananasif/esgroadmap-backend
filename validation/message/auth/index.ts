@@ -1,4 +1,4 @@
-import {requiredString} from '../../../utils/validation.js';
+import {requiredString} from '../../../utils/validation';
 
 export const auth = {
   signup: {
