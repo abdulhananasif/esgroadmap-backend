@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
-import validateRequest from '../../utils/validateRequest';
-import {signupSchema} from '../../validation/schema/auth/index';
+import {signupSchema} from '../../validation/schema/auth/index.js';
+import validateRequest from '../../utils/validateRequest.js';
 
 type Object = Record<string, any>;
 

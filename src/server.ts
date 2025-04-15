@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
-import prepareV1Routes from '../apiVersion/v1';
+import prepareV1Routes from './apiVersion/v1/index.js';
 
 dotenv.config();
 const app = express();
