@@ -1,6 +1,9 @@
 import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 import prepareV1Routes from './apiVersion/v1/index.js';
+import {PrismaClient} from './generated/prisma/index.js';
+
+export const prisma = new PrismaClient();
 
 dotenv.config();
 const app = express();
