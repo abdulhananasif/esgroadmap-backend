@@ -12,18 +12,39 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     message?: string | Object | Array<Object>;
   } = {};
   try {
-    // await validateRequest(signupSchema, req.body);
-
+    await validateRequest(signupSchema, req.body);
     const {username, email, password} = req.body;
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await prisma.user.create({
+    const existingUser = await prisma.user.findUnique({
+      where: {email: email},
+    });
+    if (existingUser) {
+      response.status = 400;
+      response.message = 'User already exist use a different email';
+      res.status(response.status).json(response.message);
+    }
+    const hashPassword = await bcrypt.hash(password, 10);
+    const newUser = await prisma.user.create({
       data: {
-        username: username,
+        username,
+        email,
+        password: hashPassword,
+        isActive: true,
       },
     });
     response.status = 200;
-    response.message = user;
+    response.message = {
+      id: newUser.id,
+      username: newUser.username,
+      email: newUser.email,
+      isActive: newUser.isActive,
+      profileImage: newUser.profileImage,
+      plan: newUser.plan,
+      role: newUser.role,
+      stripeId: newUser.stripeId,
+      createdAt: newUser.createdAt,
+      updatedAt: newUser.updatedAt,
+      deletedAt: newUser.deletedAt,
+    };
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;

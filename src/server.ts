@@ -7,10 +7,10 @@ export const prisma = new PrismaClient();
 
 dotenv.config();
 const app = express();
+app.use(express.json());
 
 prepareV1Routes(app);
 
-app.use(express.json());
 const port = process.env.PORT || 5000;
 
 app.get('/', (req: Request, res: Response) => {
