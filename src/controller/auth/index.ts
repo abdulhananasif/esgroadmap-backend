@@ -8,6 +8,7 @@ import bcrypt from 'bcryptjs';
 import {prisma} from '../../server.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
 const refresh = process.env.REFRESH_TOKEN_SECRET;
@@ -36,7 +37,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         username,
         email,
         password: hashPassword,
-        isActive: true,
+        isActive: false,
       },
     });
     response.status = 200;
@@ -84,29 +85,24 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       res.status(response.status).json(response.message);
       return;
     }
-
     const accessToken = jwt.sign({id: user.id}, access as string, {
-      expiresIn: '8h',
+      expiresIn: '30s',
     });
-
     const refreshToken = jwt.sign({id: user.id}, refresh as string, {
       expiresIn: '12h',
     });
-
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: true,
       sameSite: 'strict',
-      maxAge: 8 * 60 * 60 * 1000,
+      maxAge: 30 * 1000,
     });
-
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: true,
       sameSite: 'strict',
       maxAge: 12 * 60 * 60 * 1000,
     });
-
     response.status = 200;
     response.message = {
       id: user.id,
