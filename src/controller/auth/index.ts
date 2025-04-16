@@ -1,5 +1,8 @@
 import {Request, Response} from 'express';
-import {signupSchema} from '../../validation/schema/auth/index.js';
+import {
+  signinSchema,
+  signupSchema,
+} from '../../validation/schema/auth/index.js';
 import validateRequest from '../../utils/validateRequest.js';
 import bcrypt from 'bcryptjs';
 import {prisma} from '../../server.js';
@@ -45,6 +48,52 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       updatedAt: newUser.updatedAt,
       deletedAt: newUser.deletedAt,
     };
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+  res.status(response.status).json(response.message);
+};
+
+export const signin = async (req: Request, res: Response): Promise<void> => {
+  let response: {
+    status?: number;
+    message?: string | Object | Array<Object>;
+  } = {};
+  try {
+    await validateRequest(signinSchema, req.body);
+    const {email, password} = req.body;
+    const user = await prisma.user.findUnique({
+      where: {email: email},
+    });
+    if (!user) {
+      response.status = 400;
+      response.message = 'User not exist! use a valid email';
+      res.status(response.status).json(response.message);
+      return;
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      response.status = 400;
+      response.message = 'Invalid credentials';
+      res.status(response.status).json(response.message);
+      return;
+    }
+    response.status = 200;
+    response.message = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      isActive: user.isActive,
+      profileImage: user.profileImage,
+      plan: user.plan,
+      role: user.role,
+      stripeId: user.stripeId,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      deletedAt: user.deletedAt,
+    };
+    res.status(response.status).json(response.message);
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;
