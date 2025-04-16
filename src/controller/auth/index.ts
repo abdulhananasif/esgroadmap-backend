@@ -6,6 +6,11 @@ import {
 import validateRequest from '../../utils/validateRequest.js';
 import bcrypt from 'bcryptjs';
 import {prisma} from '../../server.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
+const access = process.env.ACCESS_TOKEN_SECRET;
+const refresh = process.env.REFRESH_TOKEN_SECRET;
 
 type Object = Record<string, any>;
 
@@ -79,6 +84,29 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       res.status(response.status).json(response.message);
       return;
     }
+
+    const accessToken = jwt.sign({id: user.id}, access as string, {
+      expiresIn: '8h',
+    });
+
+    const refreshToken = jwt.sign({id: user.id}, refresh as string, {
+      expiresIn: '12h',
+    });
+
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      maxAge: 8 * 60 * 60 * 1000,
+    });
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      maxAge: 12 * 60 * 60 * 1000,
+    });
+
     response.status = 200;
     response.message = {
       id: user.id,
