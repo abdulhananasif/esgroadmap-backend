@@ -30,3 +30,20 @@ export const editProfile = async (req: AuthenticatedRequest, res: Response) => {
   }
   res.status(response.status).json(response.message);
 };
+
+export const activate = async (req: AuthenticatedRequest, res: Response) => {
+  const {id} = req.user;
+  let response: {
+    status?: number;
+    message?: string | Object | Array<Object>;
+  } = {};
+  try {
+    await prisma.user.update({where: {id}, data: {isActive: true}});
+    response.status = 200;
+    response.message = 'success';
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+  res.status(response.status).json(response.message);
+};
