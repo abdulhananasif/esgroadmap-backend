@@ -1,8 +1,6 @@
 import {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
-interface AuthenticatedRequest extends Request {
-  user?: any;
-}
+import {AuthenticatedRequest} from '../types/request.js';
 
 const authenticateUser = async (
   req: AuthenticatedRequest,
@@ -11,7 +9,7 @@ const authenticateUser = async (
 ): Promise<void> => {
   const {accessToken} = req.cookies;
   if (!accessToken) {
-    res.status(400).json({message: 'Authentication required'});
+    res.status(403).json({message: 'Authentication required'});
     return;
   }
   jwt.verify(
@@ -19,7 +17,7 @@ const authenticateUser = async (
     process.env.ACCESS_TOKEN_SECRET as string,
     (err: any, decoded: any) => {
       if (err) {
-        res.status(400).json({message: 'Access token is expired'});
+        res.status(403).json({message: 'Access token is expired'});
       }
       req.user = decoded;
       next();

@@ -8,6 +8,7 @@ import bcrypt from 'bcryptjs';
 import {prisma} from '../../server.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import {AuthenticatedRequest} from '../../types/request.js';
 
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
@@ -126,7 +127,7 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const regenerateToken = async (
-  req: Request,
+  req: AuthenticatedRequest,
   res: Response
 ): Promise<void> => {
   const {accessToken, refreshToken} = req.cookies;
@@ -151,8 +152,6 @@ export const regenerateToken = async (
     if (error.message === 'Access token is still valid') {
       res.status(400).json(error.message);
     }
-
-    // Now validate refresh token if access token is expired or invalid
     try {
       const refreshDecoded = await new Promise<any>((resolve, reject) => {
         jwt.verify(
@@ -167,7 +166,6 @@ export const regenerateToken = async (
           }
         );
       });
-
       const newAccessToken = jwt.sign(
         {id: refreshDecoded.id},
         access as string,
