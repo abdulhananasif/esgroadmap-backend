@@ -9,6 +9,11 @@ import {prisma} from '../../server.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import {AuthenticatedRequest} from '../../types/request.js';
+import {
+  generateAccessToken,
+  generateRefreshToken,
+  setAuthCookies,
+} from '../../utils/token.js';
 
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
@@ -86,24 +91,9 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       res.status(response.status).json(response.message);
       return;
     }
-    const accessToken = jwt.sign({id: user.id}, access as string, {
-      expiresIn: '30s',
-    });
-    const refreshToken = jwt.sign({id: user.id}, refresh as string, {
-      expiresIn: '12h',
-    });
-    res.cookie('accessToken', accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-      maxAge: 30 * 1000,
-    });
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-      maxAge: 12 * 60 * 60 * 1000,
-    });
+    const accessToken = generateAccessToken(user.id);
+    const refreshToken = generateRefreshToken(user.id);
+    setAuthCookies(res, accessToken, refreshToken);
     response.status = 200;
     response.message = {
       id: user.id,
@@ -131,11 +121,9 @@ export const regenerateToken = async (
   res: Response
 ): Promise<void> => {
   const {accessToken, refreshToken} = req.cookies;
-
   if (!refreshToken) {
     res.status(400).json('Refresh token is missing');
   }
-
   try {
     const accessDecoded = await new Promise((resolve, reject) => {
       jwt.verify(accessToken, access as string, (err: any, decoded: any) => {
@@ -166,30 +154,9 @@ export const regenerateToken = async (
           }
         );
       });
-      const newAccessToken = jwt.sign(
-        {id: refreshDecoded.id},
-        access as string,
-        {expiresIn: '30s'}
-      );
-      res.cookie('accessToken', newAccessToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'strict',
-        maxAge: 30 * 1000,
-      });
-
-      const newRefreshToken = jwt.sign(
-        {id: refreshDecoded.id},
-        refresh as string,
-        {expiresIn: '8h'}
-      );
-      res.cookie('refreshToken', newRefreshToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'strict',
-        maxAge: 8 * 60 * 60 * 1000,
-      });
-
+      const newAccessToken = generateAccessToken(refreshDecoded.id);
+      const newRefreshToken = generateAccessToken(refreshDecoded.id);
+      setAuthCookies(res, newAccessToken, newRefreshToken);
       res.status(200).json('Access and Refresh token re-generated');
     } catch (refreshError: any) {
       res.status(400).json(refreshError.message);
