@@ -124,3 +124,77 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
   }
   res.status(response.status).json(response.message);
 };
+
+export const regenerateToken = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const {accessToken, refreshToken} = req.cookies;
+
+  if (!refreshToken) {
+    res.status(400).json('Refresh token is missing');
+  }
+
+  try {
+    const accessDecoded = await new Promise((resolve, reject) => {
+      jwt.verify(accessToken, access as string, (err: any, decoded: any) => {
+        if (!err) {
+          reject(new Error('Access token is still valid'));
+        } else if (err.name !== 'TokenExpiredError') {
+          reject(new Error('Invalid access token'));
+        } else {
+          resolve(decoded);
+        }
+      });
+    });
+  } catch (error: any) {
+    if (error.message === 'Access token is still valid') {
+      res.status(400).json(error.message);
+    }
+
+    // Now validate refresh token if access token is expired or invalid
+    try {
+      const refreshDecoded = await new Promise<any>((resolve, reject) => {
+        jwt.verify(
+          refreshToken,
+          refresh as string,
+          (err: any, decoded: any) => {
+            if (err) {
+              reject(new Error('Refresh token is invalid or expired'));
+            } else {
+              resolve(decoded);
+            }
+          }
+        );
+      });
+
+      const newAccessToken = jwt.sign(
+        {id: refreshDecoded.id},
+        access as string,
+        {expiresIn: '30s'}
+      );
+      res.cookie('accessToken', newAccessToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+        maxAge: 30 * 1000,
+      });
+
+      const newRefreshToken = jwt.sign(
+        {id: refreshDecoded.id},
+        refresh as string,
+        {expiresIn: '8h'}
+      );
+      res.cookie('refreshToken', newRefreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+        maxAge: 8 * 60 * 60 * 1000,
+      });
+
+      res.status(200).json('Access and Refresh token re-generated');
+    } catch (refreshError: any) {
+      res.status(400).json(refreshError.message);
+    }
+  }
+};
