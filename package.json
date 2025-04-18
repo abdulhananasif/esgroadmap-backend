@@ -8,7 +8,7 @@
     "start": "node api/server.js",
     "dev": "nodemon --watch src --exec \"node --loader ts-node/esm\" src/dev.ts",
     "build": "tsc",
-    "prod": "prisma generate && npm run build"
+    "prod": "prisma generate && npm run build && npm start"
   },
   "repository": {
     "type": "git",
