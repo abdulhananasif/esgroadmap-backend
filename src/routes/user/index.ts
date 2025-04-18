@@ -20,7 +20,7 @@ userRouter.put(
 );
 
 userRouter.put(
-  '/editpassword',
+  '/editPassword',
   authenticateUser as unknown as express.RequestHandler,
   editPassword as unknown as express.RequestHandler
 );
