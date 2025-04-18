@@ -4,7 +4,6 @@ import {
   signupSchema,
 } from '../../validation/schema/auth/index.js';
 import validateRequest from '../../utils/validateRequest.js';
-import bcrypt from 'bcryptjs';
 import {prisma} from '../../server.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -14,6 +13,7 @@ import {
   generateRefreshToken,
   setAuthCookies,
 } from '../../utils/token.js';
+import {comparePasswords, hashPassword} from '../../utils/password.js';
 
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
@@ -33,16 +33,14 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       where: {email: email},
     });
     if (existingUser) {
-      response.status = 400;
-      response.message = 'User already exist use a different email';
-      res.status(response.status).json(response.message);
+      throw {message: 'User already exist use a different email'};
     }
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hashPassword(password);
     const newUser = await prisma.user.create({
       data: {
         username,
         email,
-        password: hashPassword,
+        password: hashedPassword,
         isActive: false,
       },
     });
@@ -79,17 +77,11 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       where: {email: email},
     });
     if (!user) {
-      response.status = 400;
-      response.message = 'User not exist! use a valid email';
-      res.status(response.status).json(response.message);
-      return;
+      throw {message: 'User not exist! use a valid email'};
     }
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = comparePasswords(password, user.password);
     if (!isMatch) {
-      response.status = 400;
-      response.message = 'Invalid credentials';
-      res.status(response.status).json(response.message);
-      return;
+      throw {message: 'Invalid credentials'};
     }
     const accessToken = generateAccessToken(user.id);
     const refreshToken = generateRefreshToken(user.id);

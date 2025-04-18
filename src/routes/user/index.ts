@@ -1,6 +1,10 @@
 import express from 'express';
 import authenticateUser from '../../middleware/authenticateUser.js';
-import {activate, editProfile} from '../../controller/user/index.js';
+import {
+  activate,
+  editPassword,
+  editProfile,
+} from '../../controller/user/index.js';
 
 const userRouter = express.Router();
 
@@ -13,6 +17,12 @@ userRouter.put(
   '/activate',
   authenticateUser as unknown as express.RequestHandler,
   activate as unknown as express.RequestHandler
+);
+
+userRouter.put(
+  '/editPassword',
+  authenticateUser as unknown as express.RequestHandler,
+  editPassword as unknown as express.RequestHandler
 );
 
 export default userRouter;
