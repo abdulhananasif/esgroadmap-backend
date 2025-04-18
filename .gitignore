@@ -138,4 +138,3 @@ dist
 #  Prisma Files
 src/generated
 prisma/migrations
-api
