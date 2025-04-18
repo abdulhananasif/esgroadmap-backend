@@ -150,6 +150,18 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "darwin"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "windows"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -176,8 +188,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           Int       @unique(map: \"id\") @default(autoincrement())\n  username     String    @db.VarChar(255)\n  email        String    @unique @db.VarChar(255)\n  password     String    @db.VarChar(255)\n  isActive     Boolean   @map(\"is_active\")\n  profileImage String?   @map(\"profile_image\") @db.Text\n  plan         Int       @default(1) @map(\"plan\")\n  role         String    @default(\"user\") @db.VarChar(255)\n  stripeId     String?   @default(\"stripe_id\") @db.VarChar(255)\n  createdAt    DateTime  @default(now()) @map(\"created_at\")\n  updatedAt    DateTime? @map(\"updated_at\")\n  deletedAt    DateTime? @map(\"deleted_at\")\n\n  @@map(\"users\")\n}\n",
-  "inlineSchemaHash": "a562e526e20e09a7f525aafc64c7068e91c419cd552410d12150be2b0ee98b0c",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"darwin\", \"windows\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id           Int       @unique(map: \"id\") @default(autoincrement())\n  username     String    @db.VarChar(255)\n  email        String    @unique @db.VarChar(255)\n  password     String    @db.VarChar(255)\n  isActive     Boolean   @map(\"is_active\")\n  profileImage String?   @map(\"profile_image\") @db.Text\n  plan         Int       @default(1) @map(\"plan\")\n  role         String    @default(\"user\") @db.VarChar(255)\n  stripeId     String?   @default(\"stripe_id\") @db.VarChar(255)\n  createdAt    DateTime  @default(now()) @map(\"created_at\")\n  updatedAt    DateTime? @map(\"updated_at\")\n  deletedAt    DateTime? @map(\"deleted_at\")\n\n  @@map(\"users\")\n}\n",
+  "inlineSchemaHash": "8577b9cfa125f1414033d6b2094841bba122526b9ecf6c3cd67351facef3457b",
   "copyEngine": true
 }
 
@@ -218,6 +230,14 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-darwin.dylib.node");
 path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin.dylib.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")
