@@ -88,3 +88,32 @@ export const editPassword = async (
   }
   res.status(response.status).json(response.message);
 };
+
+export const forgotPassword = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  let response: {
+    status?: number;
+    message?: string | Object | Array<Object>;
+  } = {};
+
+  try {
+    const {email} = req.body;
+    const user = await prisma.user.findUnique({
+      where: {email},
+    });
+    if (!user) {
+      throw {message: `user with this email id ${email} is not registered`};
+    }
+    const otp = Math.floor(Math.random() * 9000).toString();
+    const expiresIn = new Date(Date.now() + 30 * 1000);
+
+    // response.status = 200
+    // response.message = { otp, expiresIn };
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+  // res.status(response.status).json(response.message);
+};
