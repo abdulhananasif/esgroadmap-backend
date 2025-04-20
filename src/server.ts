@@ -19,7 +19,7 @@ const allowedorigins = [
 app.use(
   cors({
     origin: allowedorigins,
-    methods: 'GET,PUT,POST.DELETE,PATCH,HEAD',
+    methods: 'GET,PUT,POST,DELETE,PATCH,HEAD',
     preflightContinue: false,
     optionsSuccessStatus: 204,
     credentials: true,
