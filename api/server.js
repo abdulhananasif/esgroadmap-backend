@@ -10,17 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.options('*', cors()); // Handles preflight for all routes
-const allowedorigins = [
-    'https://esgroadmap-frontend.vercel.app',
-    'http://localhost:3000',
-];
-app.use(cors({
-    origin: allowedorigins,
-    methods: 'GET,PUT,POST,DELETE,PATCH,HEAD',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-    credentials: true,
-}));
+// const allowedorigins = [
+//   'https://esgroadmap-frontend.vercel.app',
+//   'http://localhost:3000',
+// ];
+app.use(cors());
 prepareV1Routes(app);
 const port = process.env.PORT || 5000;
 app.get('/', (req, res) => {
