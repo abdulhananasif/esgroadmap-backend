@@ -12,7 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedorigins = ['https://esgroadmap-frontend.vercel.app/'];
+const allowedorigins = [
+  'https://esgroadmap-frontend.vercel.app/',
+  'http://localhost:3000',
+];
 app.use(
   cors({
     origin: allowedorigins,
