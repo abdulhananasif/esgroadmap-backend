@@ -4,6 +4,7 @@ import validateRequest from '../../utils/validateRequest.js';
 import {editProfileSchema} from '../../validation/schema/user/index.js';
 import {prisma} from '../../server.js';
 import {comparePasswords, hashPassword} from '../../utils/password.js';
+import {deleteOtp, getOtp, saveOtp} from '../../utils/otp.js';
 
 export const editProfile = async (req: AuthenticatedRequest, res: Response) => {
   const {id} = req.user;
@@ -106,14 +107,45 @@ export const forgotPassword = async (
     if (!user) {
       throw {message: `user with this email id ${email} is not registered`};
     }
-    const otp = Math.floor(Math.random() * 9000).toString();
+    const otp = Math.floor(Math.random() * (9999 - 1111) + 1000).toString();
     const expiresIn = new Date(Date.now() + 30 * 1000);
 
-    // response.status = 200
-    // response.message = { otp, expiresIn };
+    saveOtp(email, otp, expiresIn as any);
+
+    response.status = 200;
+    response.message = {otp, expiresIn};
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;
   }
-  // res.status(response.status).json(response.message);
+  res.status(response.status).json(response.message);
+};
+
+export const verifyOtp = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  let response: {
+    status?: number;
+    message?: string;
+  } = {};
+
+  try {
+    const {email, otp} = req.body;
+    const stored = getOtp(email);
+    if (!stored) {
+      throw new Error('OTP expired or not found');
+    }
+    if (stored.otp !== otp) {
+      throw new Error('Invalid OTP');
+    }
+    deleteOtp(email);
+    response.status = 200;
+    response.message = 'OTP verified successfully';
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+
+  res.status(response.status!).json(response.message);
 };

@@ -4,6 +4,8 @@ import {
   activate,
   editPassword,
   editProfile,
+  forgotPassword,
+  verifyOtp,
 } from '../../controller/user/index.js';
 
 const userRouter = express.Router();
@@ -24,5 +26,12 @@ userRouter.put(
   authenticateUser as unknown as express.RequestHandler,
   editPassword as unknown as express.RequestHandler
 );
+
+userRouter.post(
+  '/forgotPassword',
+  forgotPassword as unknown as express.RequestHandler
+);
+
+userRouter.post('/verifyOtp', verifyOtp as unknown as express.RequestHandler);
 
 export default userRouter;
