@@ -11,7 +11,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.options('*', cors()); // Handles preflight for all routes
 
 const allowedorigins = [
   'https://esgroadmap-frontend.vercel.app',
