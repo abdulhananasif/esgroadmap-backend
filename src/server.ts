@@ -18,7 +18,14 @@ const allowedorigins = [
 ];
 app.use(
   cors({
-    origin: allowedorigins,
+    origin: function (origin, callback) {
+      if (!origin || allowedorigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log('❌ Blocked CORS from:', origin);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: 'GET,PUT,POST,DELETE,PATCH',
     preflightContinue: false,
     optionsSuccessStatus: 204,
