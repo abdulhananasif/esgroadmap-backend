@@ -27,3 +27,5 @@ export const getOtp = (email: string): OtpEntry | undefined => {
 export const deleteOtp = (email: string) => {
   delete otpStore[email];
 };
+
+export const verifiedUser = new Map<string, boolean>();

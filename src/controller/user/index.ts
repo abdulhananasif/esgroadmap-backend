@@ -4,7 +4,7 @@ import validateRequest from '../../utils/validateRequest.js';
 import {editProfileSchema} from '../../validation/schema/user/index.js';
 import {prisma} from '../../server.js';
 import {comparePasswords, hashPassword} from '../../utils/password.js';
-import {deleteOtp, getOtp, saveOtp} from '../../utils/otp.js';
+import {deleteOtp, getOtp, saveOtp, verifiedUser} from '../../utils/otp.js';
 
 export const editProfile = async (req: AuthenticatedRequest, res: Response) => {
   const {id} = req.user;
@@ -90,7 +90,7 @@ export const editPassword = async (
   res.status(response.status).json(response.message);
 };
 
-export const forgotPassword = async (
+export const generateOtp = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<void> => {
@@ -127,7 +127,7 @@ export const verifyOtp = async (
 ): Promise<void> => {
   let response: {
     status?: number;
-    message?: string;
+    message?: string | object | Array<object>;
   } = {};
 
   try {
@@ -140,6 +140,8 @@ export const verifyOtp = async (
       throw new Error('Invalid OTP');
     }
     deleteOtp(email);
+
+    verifiedUser.set(email, true);
     response.status = 200;
     response.message = 'OTP verified successfully';
   } catch (err: any) {
@@ -148,4 +150,32 @@ export const verifyOtp = async (
   }
 
   res.status(response.status!).json(response.message);
+};
+
+export const forgotPassword = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  const {email, newPassword} = req.body;
+  let response: {
+    status?: number;
+    message?: string | object | Array<object>;
+  } = {};
+  try {
+    if (!verifiedUser.get(email)) {
+      throw {message: 'otp not verified'};
+    }
+
+    const hashedPassword = await hashPassword(newPassword);
+    await prisma.user.update({
+      where: {email},
+      data: {password: hashedPassword},
+    });
+    response.status = 200;
+    response.message = 'Password changed';
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+  res.status(response.status).json(response.message);
 };
