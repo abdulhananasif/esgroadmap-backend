@@ -4,6 +4,7 @@ import validateRequest from '../../utils/validateRequest.js';
 import {editProfileSchema} from '../../validation/schema/user/index.js';
 import {prisma} from '../../server.js';
 import {comparePasswords, hashPassword} from '../../utils/password.js';
+import {deleteOtp, getOtp, saveOtp, verifiedUser} from '../../utils/otp.js';
 
 export const editProfile = async (req: AuthenticatedRequest, res: Response) => {
   const {id} = req.user;
@@ -82,6 +83,96 @@ export const editPassword = async (
     });
     response.status = 200;
     response.message = 'password changed';
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+  res.status(response.status).json(response.message);
+};
+
+export const generateOtp = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  let response: {
+    status?: number;
+    message?: string | Object | Array<Object>;
+  } = {};
+
+  try {
+    const {email} = req.body;
+    const user = await prisma.user.findUnique({
+      where: {email},
+    });
+    if (!user) {
+      throw {message: `user with this email id ${email} is not registered`};
+    }
+    const otp = Math.floor(Math.random() * (9999 - 1111) + 1000).toString();
+    const expiresIn = new Date(Date.now() + 30 * 1000);
+
+    saveOtp(email, otp, expiresIn);
+
+    response.status = 200;
+    response.message = {otp, expiresIn};
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+  res.status(response.status).json(response.message);
+};
+
+export const verifyOtp = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  let response: {
+    status?: number;
+    message?: string | object | Array<object>;
+  } = {};
+
+  try {
+    const {email, otp} = req.body;
+    const stored = getOtp(email);
+    if (!stored) {
+      throw new Error('OTP expired or not found');
+    }
+    if (stored.otp !== otp) {
+      throw new Error('Invalid OTP');
+    }
+    deleteOtp(email);
+
+    verifiedUser.set(email, true);
+    response.status = 200;
+    response.message = 'OTP verified successfully';
+  } catch (err: any) {
+    response.status = 400;
+    response.message = err.message;
+  }
+
+  res.status(response.status!).json(response.message);
+};
+
+export const forgotPassword = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
+  const {email, newPassword} = req.body;
+  let response: {
+    status?: number;
+    message?: string | object | Array<object>;
+  } = {};
+  try {
+    if (!verifiedUser.get(email)) {
+      throw {message: 'otp not verified'};
+    }
+
+    const hashedPassword = await hashPassword(newPassword);
+    await prisma.user.update({
+      where: {email},
+      data: {password: hashedPassword},
+    });
+    response.status = 200;
+    response.message = 'Password changed';
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;

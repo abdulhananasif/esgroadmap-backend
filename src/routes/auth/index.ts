@@ -9,7 +9,6 @@ authRouter.post('/signup', signup);
 authRouter.post('/signin', signin);
 authRouter.post(
   '/regenerateToken',
-  authenticateUser as unknown as express.RequestHandler,
   regenerateToken as unknown as express.RequestHandler
 );
 
