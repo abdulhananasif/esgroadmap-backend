@@ -13,9 +13,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const allowedorigins = [
-  '*',
   'https://esgroadmap-frontend.vercel.app',
-  'http://localhost:3000',
   'http://localhost:5173',
 ];
 app.use(
