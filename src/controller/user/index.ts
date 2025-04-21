@@ -110,7 +110,7 @@ export const generateOtp = async (
     const otp = Math.floor(Math.random() * (9999 - 1111) + 1000).toString();
     const expiresIn = new Date(Date.now() + 30 * 1000);
 
-    saveOtp(email, otp, expiresIn as any);
+    saveOtp(email, otp, expiresIn);
 
     response.status = 200;
     response.message = {otp, expiresIn};

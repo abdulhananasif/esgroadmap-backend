@@ -5,10 +5,10 @@ interface OtpEntry {
 
 const otpStore: Record<string, OtpEntry> = {};
 
-export const saveOtp = (email: string, otp: string, expiresInMs: number) => {
+export const saveOtp = (email: string, otp: string, expiresInMs: Date) => {
   otpStore[email] = {
     otp,
-    expiresAt: Date.now() + expiresInMs,
+    expiresAt: expiresInMs.getTime(),
   };
 };
 
