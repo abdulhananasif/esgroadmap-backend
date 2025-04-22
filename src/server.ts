@@ -4,6 +4,7 @@ import prepareV1Routes from './apiVersion/v1/index.js';
 import {PrismaClient} from './generated/prisma/index.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import {sendEmail} from './utils/email.js';
 
 export const prisma = new PrismaClient();
 
@@ -28,8 +29,7 @@ app.use(
 
 prepareV1Routes(app);
 
-const port = process.env.PORT || 5000;
-
+sendEmail('', 'TEST ESG', 'This is a test email from ESGROADMAP');
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express!');
 });
