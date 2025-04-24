@@ -101,7 +101,7 @@ export const generateOtp = async (
 
   try {
     const {email} = req.body;
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: {email},
     });
     if (!user) {
@@ -165,10 +165,15 @@ export const forgotPassword = async (
     if (!verifiedUser.get(email)) {
       throw {message: 'otp not verified'};
     }
-
+    const user = await prisma.user.findFirst({
+      where: {email},
+    });
+    if (!user) {
+      throw new Error('User not found');
+    }
     const hashedPassword = await hashPassword(newPassword);
     await prisma.user.update({
-      where: {email},
+      where: {id: user.id},
       data: {password: hashedPassword},
     });
     response.status = 200;
