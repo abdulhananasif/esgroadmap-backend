@@ -6,7 +6,7 @@ const toolRouter = express.Router();
 
 toolRouter.get(
   '/carbonReduction',
-  authenticateUser as unknown as express.RequestHandler,
+  // authenticateUser as unknown as express.RequestHandler,
   carbonReduction as unknown as express.RequestHandler
 );
 
