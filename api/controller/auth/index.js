@@ -13,7 +13,7 @@ export const signup = async (req, res) => {
     try {
         await validateRequest(signupSchema, req.body);
         const { username, email, password } = req.body;
-        const existingUser = await prisma.user.findUnique({
+        const existingUser = await prisma.user.findFirst({
             where: { email: email },
         });
         if (existingUser) {
@@ -54,8 +54,8 @@ export const signin = async (req, res) => {
     try {
         await validateRequest(signinSchema, req.body);
         const { email, password } = req.body;
-        const user = await prisma.user.findUnique({
-            where: { email: email },
+        const user = await prisma.user.findFirst({
+            where: { email },
         });
         if (!user) {
             throw { message: 'User not exist! use a valid email' };
