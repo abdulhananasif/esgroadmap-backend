@@ -977,3 +977,70 @@ enum wp_wpdatatables_columns_input_type {
   multi_selectbox @map("multi-selectbox")
   attachment
 }
+
+model sentenceallview {
+  id                         Int       @id
+  release_date               DateTime?
+  pr_site                    String?
+  Targetyear_s               String?   @map("Targetyear(s)")
+  ArticleTargetYear          String?
+  sentence_carbon            BigInt?   @map("sentence-carbon")
+  full_text                  String?
+  PressReleaseMonth          String?
+  PressReleaseFullClean      String?
+  sentence_renewables        BigInt?   @map("sentence-renewables")
+  sentence_suppliers         BigInt?   @map("sentence-suppliers")
+  sentence_gender            BigInt?   @map("sentence-gender")
+  Company                    String?
+  Annual_Report_Date         String?   @map("Annual Report Date")
+  title                      String?
+  emails                     String?
+  sentence_other             BigInt?   @map("sentence-other")
+  Source_link                String?   @map("Source link")
+  Source_Date                String?   @map("Source Date")
+  PressReleaseFullCleanstep1 String?
+  sentence_waste             BigInt?   @map("sentence-waste")
+  source                     String?
+  sentence_water             BigInt?   @map("sentence-water")
+  PressReleaseYear           String?
+  ticker                     String?
+  SentenceTargetYear         String?
+  Target_sentence            String?   @map("Target sentence")
+  upload_date                String?   @map("upload-date")
+  PageURL                    String?
+  DocURL                     String?
+  DocTitle                   String?
+  DocName                    String?
+  Target_Sentence_Page       String?   @map("Target Sentence Page")
+  x                          String?
+  Member_SP500               String?   @map("Member of the S&P500")
+  Member_Russell1000         String?   @map("Member of the Russell 1000 Index")
+  ScrapingCodeSetUp          String?   @map("Scraping code set up ?")
+  Tickers                    String?   @map("Ticker(s)")
+  PRAgency                   String?   @map("PR Agency")
+  Domain                     String?
+  PressURL                   String?   @map("Company global/main press - news release site URL")
+  SubscribedEsgroadmap       String?   @map("Subscribed to press releases esgroadmap@gmail.com ?")
+  SubscribedJames            String?   @map("Subscribed to press releases jameskijani@gmail.com ?")
+  PlainTextSubscription      String?   @map("Plain text press release subscription possible? (yes/no)")
+  AnnualReportsURL           String?   @map("Company annual reports page URL")
+  AnnualReportPDF2020        String?   @map("Company annual report 2020 URL of pdf document (including 10-k)")
+  ESGReportsURL              String?   @map("Company sustainability / ESG reports page URL")
+  ESGReportPDF2020           String?   @map("Company Sustainability / ESG report 2020 URL of pdf document")
+  Country                    String?
+  SectorCode1                String?   @map("sector code #1 (NAICS)")
+  SectorName1                String?   @map("sector name #1 (NAICS)")
+  SectorCode2                String?   @map("sector code #2 (NAICS)")
+  SectorName2                String?   @map("sector name #2 (NAICS)")
+  SectorCode3                String?   @map("sector code #3 (NAICS)")
+  SectorName3                String?   @map("sector name #3 (NAICS)")
+  SectorCode4                String?   @map("sector code #4 (NAICS)")
+  SectorName4                String?   @map("sector name #4 (NAICS)")
+  SectorCode5                String?   @map("sector code #5 (NAICS)")
+  SectorName5                String?   @map("sector name #5 (NAICS)")
+  WorkedBy                   String?   @map("WORKED BY:")
+  CommentsNotes              String?   @map("COMMENTS / NOTES")
+  CarbonSentenceAvailable    String?   @map("Carbon sentence available ?")
+
+  @@map("sentenceallview")
+}
