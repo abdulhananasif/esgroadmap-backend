@@ -14,6 +14,8 @@ export const carbonReduction = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
+    const dataCount = await prisma.sentenceallview.count();
+    const totalPages = Math.ceil(dataCount / limit);
 
     const carbonSentence = await prisma.sentenceallview.findMany({
       where: {
@@ -38,7 +40,7 @@ export const carbonReduction = async (
       take: limit,
     });
     response.status = 200;
-    response.message = carbonSentence;
+    response.message = {carbonSentence, totalPages};
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;
