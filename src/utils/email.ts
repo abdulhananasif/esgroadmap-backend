@@ -17,7 +17,7 @@ const generateMailOptions = (
 
 const generateTransporter = () =>
   nodemailer.createTransport({
-    host: 'smtp.hostinger.com',
+    host: 'esgroadmap.com',
     port: 465,
     secure: true,
     auth: {
