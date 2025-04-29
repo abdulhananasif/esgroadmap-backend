@@ -19,7 +19,6 @@ export const saveOtp = (email: string, otp: string, expiresIn: Date) => {
   otpTimeouts[email] = setTimeout(() => {
     delete otpStore[email];
     delete otpTimeouts[email];
-    console.log(`OTP for ${email} expired and was deleted automatically.`);
   }, timeLeft);
 };
 

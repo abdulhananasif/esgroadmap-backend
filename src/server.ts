@@ -29,7 +29,6 @@ app.use(
 
 prepareV1Routes(app);
 
-// sendEmail('', 'TEST ESG', 'This is a test email from ESGROADMAP');
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express!');
 });
