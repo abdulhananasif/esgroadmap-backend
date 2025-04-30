@@ -14,6 +14,8 @@ import {
   setAuthCookies,
 } from '../../utils/token.js';
 import {comparePasswords, hashPassword} from '../../utils/password.js';
+import {sendEmail} from '../../utils/email.js';
+import {emailContent} from '../../utils/emailContent.js';
 
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
@@ -44,19 +46,14 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         isActive: false,
       },
     });
+
+    const activationLink = process.env.CLIENT_URL;
+    console.log('🚀 ~ signup ~ activationLink:', activationLink);
+
+    sendEmail(email, 'Activate Your Account', emailContent);
     response.status = 200;
     response.message = {
-      id: newUser.id,
-      username: newUser.username,
-      email: newUser.email,
-      isActive: newUser.isActive,
-      profileImage: newUser.profileImage,
-      plan: newUser.plan,
-      role: newUser.role,
-      stripeId: newUser.stripeId,
-      createdAt: newUser.createdAt,
-      updatedAt: newUser.updatedAt,
-      deletedAt: newUser.deletedAt,
+      Message: 'Signup successful, Check your email account activation',
     };
   } catch (err: any) {
     response.status = 400;
