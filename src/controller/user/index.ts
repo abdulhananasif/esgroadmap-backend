@@ -5,6 +5,7 @@ import {editProfileSchema} from '../../validation/schema/user/index.js';
 import {prisma} from '../../server.js';
 import {comparePasswords, hashPassword} from '../../utils/password.js';
 import {deleteOtp, getOtp, saveOtp, verifiedUser} from '../../utils/otp.js';
+import {sendEmail} from '../../utils/email.js';
 
 export const editProfile = async (req: AuthenticatedRequest, res: Response) => {
   const {id} = req.user;
@@ -111,7 +112,9 @@ export const generateOtp = async (
     const expiresIn = new Date(Date.now() + 30 * 1000);
 
     saveOtp(email, otp, expiresIn);
-
+    const subject = 'Your OTP Code';
+    const content = `Your OTP is ${otp}. It will expire in 30 seconds.`;
+    await sendEmail(email, subject, content);
     response.status = 200;
     response.message = {otp, expiresIn};
   } catch (err: any) {
