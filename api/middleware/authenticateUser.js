@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 const authenticateUser = async (req, res, next) => {
-    console.log('🚀 ~ req:', req.cookies);
     const { accessToken } = req.cookies;
     if (!accessToken) {
         res.status(403).json({ message: 'Authentication required' });
