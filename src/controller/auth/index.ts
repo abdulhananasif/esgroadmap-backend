@@ -75,7 +75,7 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
     if (!user) {
       throw {message: 'User not exist! use a valid email'};
     }
-    const isMatch = comparePasswords(password, user.password);
+    const isMatch = await comparePasswords(password, user.password);
     if (!isMatch) {
       throw {message: 'Invalid credentials'};
     }

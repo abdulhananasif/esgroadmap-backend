@@ -68,7 +68,7 @@ export const editPassword = async (
     if (!user) {
       throw {message: 'User not found'};
     }
-    const isMatch = comparePasswords(oldPassword, user.password);
+    const isMatch = await comparePasswords(oldPassword, user.password);
     if (!isMatch) {
       throw {message: 'old password is incorrect'};
     }
