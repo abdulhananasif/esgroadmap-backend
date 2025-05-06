@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { generateAccessToken, generateRefreshToken, setAuthCookies, } from '../../utils/token.js';
 import { comparePasswords, hashPassword } from '../../utils/password.js';
+import { sendEmail } from '../../utils/email.js';
+import { emailContent } from '../../utils/emailContent.js';
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
 const refresh = process.env.REFRESH_TOKEN_SECRET;
@@ -28,19 +30,11 @@ export const signup = async (req, res) => {
                 isActive: false,
             },
         });
+        const activationLink = process.env.CLIENT_URL;
+        sendEmail(email, 'Activate Your Account', emailContent);
         response.status = 200;
         response.message = {
-            id: newUser.id,
-            username: newUser.username,
-            email: newUser.email,
-            isActive: newUser.isActive,
-            profileImage: newUser.profileImage,
-            plan: newUser.plan,
-            role: newUser.role,
-            stripeId: newUser.stripeId,
-            createdAt: newUser.createdAt,
-            updatedAt: newUser.updatedAt,
-            deletedAt: newUser.deletedAt,
+            Message: 'Signup successful, Check your email account activation',
         };
     }
     catch (err) {
@@ -60,7 +54,7 @@ export const signin = async (req, res) => {
         if (!user) {
             throw { message: 'User not exist! use a valid email' };
         }
-        const isMatch = comparePasswords(password, user.password);
+        const isMatch = await comparePasswords(password, user.password);
         if (!isMatch) {
             throw { message: 'Invalid credentials' };
         }

@@ -3,6 +3,7 @@ import { editProfileSchema } from '../../validation/schema/user/index.js';
 import { prisma } from '../../server.js';
 import { comparePasswords, hashPassword } from '../../utils/password.js';
 import { deleteOtp, getOtp, saveOtp, verifiedUser } from '../../utils/otp.js';
+import { sendEmail } from '../../utils/email.js';
 export const editProfile = async (req, res) => {
     const { id } = req.user;
     let response = {};
@@ -52,7 +53,7 @@ export const editPassword = async (req, res) => {
         if (!user) {
             throw { message: 'User not found' };
         }
-        const isMatch = comparePasswords(oldPassword, user.password);
+        const isMatch = await comparePasswords(oldPassword, user.password);
         if (!isMatch) {
             throw { message: 'old password is incorrect' };
         }
@@ -87,6 +88,9 @@ export const generateOtp = async (req, res) => {
         const otp = Math.floor(Math.random() * (9999 - 1111) + 1000).toString();
         const expiresIn = new Date(Date.now() + 30 * 1000);
         saveOtp(email, otp, expiresIn);
+        const subject = 'Your OTP Code';
+        const content = `Your OTP is ${otp}. It will expire in 30 seconds.`;
+        await sendEmail(email, subject, content);
         response.status = 200;
         response.message = { otp, expiresIn };
     }

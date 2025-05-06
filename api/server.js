@@ -21,7 +21,6 @@ app.use(cors({
     credentials: true,
 }));
 prepareV1Routes(app);
-const port = process.env.PORT || 5000;
 app.get('/', (req, res) => {
     res.send('Hello, TypeScript with Express!');
 });
