@@ -2,8 +2,8 @@ import { prisma } from '../../server.js';
 export const carbonReduction = async (req, res) => {
     let response = {};
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const {page} = req.query || 1;
+        const {limit} = req.query || 10;
         const dataCount = await prisma.sentenceallview.count();
         const totalPages = Math.ceil(dataCount / limit);
         const carbonSentence = await prisma.sentenceallview.findMany({
@@ -39,8 +39,8 @@ export const carbonReduction = async (req, res) => {
 export const wasteAndRecycling = async (req, res) => {
     let response = {};
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const {page} = req.query || 1;
+        const {limit} = req.query || 10;
         const dataCount = await prisma.sentenceallview.count();
         const totalPages = Math.ceil(dataCount / limit);
         const wasteSentence = await prisma.sentenceallview.findMany({
@@ -76,8 +76,8 @@ export const wasteAndRecycling = async (req, res) => {
 export const waterManagement = async (req, res) => {
     let response = {};
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const {page} = req.query || 1;
+        const {limit} = req.query || 10;
         const dataCount = await prisma.sentenceallview.count();
         const totalPages = Math.ceil(dataCount / limit);
         const waterSentence = await prisma.sentenceallview.findMany({
@@ -113,8 +113,8 @@ export const waterManagement = async (req, res) => {
 export const sentenceGender = async (req, res) => {
     let response = {};
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const {page} = req.query || 1;
+        const {limit} = req.query || 10;
         const dataCount = await prisma.sentenceallview.count();
         const totalPages = Math.ceil(dataCount / limit);
         const genderSentence = await prisma.sentenceallview.findMany({
@@ -150,8 +150,8 @@ export const sentenceGender = async (req, res) => {
 export const supplyChain = async (req, res) => {
     let response = {};
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const {page} = req.query || 1;
+        const {limit} = req.query || 10;
         const dataCount = await prisma.sentenceallview.count();
         const totalPages = Math.ceil(dataCount / limit);
         const supplyChain = await prisma.sentenceallview.findMany({
@@ -187,8 +187,8 @@ export const supplyChain = async (req, res) => {
 export const renewables = async (req, res) => {
     let response = {};
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const {page} = req.query || 1;
+        const {limit} = req.query || 10;
         const dataCount = await prisma.sentenceallview.count();
         const totalPages = Math.ceil(dataCount / limit);
         const renewablesSentence = await prisma.sentenceallview.findMany({
