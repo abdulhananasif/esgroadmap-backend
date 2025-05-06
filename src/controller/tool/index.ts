@@ -15,11 +15,12 @@ export const carbonReduction = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-    const search = (req.query.search as string)?.trim() || '';
+    const {search} = req.query;
+    const searchStr = typeof search === 'string' ? search : '';
     const baseFilter = {
       sentence_carbon : 1,
     }
-    const whereClause = safeSearch(baseFilter , search);
+    const whereClause = safeSearch(baseFilter , searchStr);
     const dataCount = await prisma.sentenceallview.count({where: whereClause});
     const totalPages = Math.ceil(dataCount / limit);
 
@@ -64,12 +65,12 @@ export const wasteAndRecycling = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-
-    const search = (req.query.search as string)?.trim() || '';
+    const {search} = req.query;
+    const searchStr = typeof search === 'string' ? search : '';
     const baseFilter = {
       sentence_waste : 1,
     }
-    const whereClause = safeSearch(baseFilter , search);
+    const whereClause = safeSearch(baseFilter , searchStr);
 
     const dataCount = await prisma.sentenceallview.count({where:whereClause});
     const totalPages = Math.ceil(dataCount / limit);
@@ -115,12 +116,12 @@ export const waterManagement = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-
-    const search = (req.query.search as string)?.trim() || '';
+    const {search} = req.query;
+    const searchStr = typeof search === 'string' ? search : '';
     const baseFilter = {
       sentence_water : 1,
     }
-    const whereClause = safeSearch(baseFilter , search);
+    const whereClause = safeSearch(baseFilter , searchStr);
     const dataCount = await prisma.sentenceallview.count({where: whereClause});
     const totalPages = Math.ceil(dataCount / limit);
 
@@ -165,11 +166,12 @@ export const sentenceGender = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-    const search = (req.query.search as string)?.trim() || '';
+    const {search} = req.query;
+    const searchStr = typeof search === 'string' ? search : '';
     const baseFilter = {
       sentence_gender : 1,
     }
-    const whereClause = safeSearch(baseFilter , search);
+    const whereClause = safeSearch(baseFilter , searchStr);
     const dataCount = await prisma.sentenceallview.count({where: whereClause});
     const totalPages = Math.ceil(dataCount / limit);
 
@@ -214,11 +216,12 @@ export const supplyChain = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-    const search = (req.query.search as string)?.trim() || '';
+    const {search} = req.query;
+    const searchStr = typeof search === 'string' ? search : '';
     const baseFilter = {
       sentence_suppliers : 1,
     }
-    const whereClause = safeSearch(baseFilter , search);
+    const whereClause = safeSearch(baseFilter , searchStr);
     const dataCount = await prisma.sentenceallview.count({where: whereClause});
     const totalPages = Math.ceil(dataCount / limit);
 
@@ -263,11 +266,12 @@ export const renewables = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-    const search = (req.query.search as string)?.trim() || '';
+    const {search} = req.query;
+    const searchStr = typeof search === 'string' ? search : '';
     const baseFilter = {
       sentence_renewables : 1,
     }
-    const whereClause = safeSearch(baseFilter , search);
+    const whereClause = safeSearch(baseFilter , searchStr);
     const dataCount = await prisma.sentenceallview.count({where: whereClause});
     const totalPages = Math.ceil(dataCount / limit);
 
