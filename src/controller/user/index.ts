@@ -109,14 +109,14 @@ export const generateOtp = async (
       throw {message: `user with this email id ${email} is not registered`};
     }
     const otp = Math.floor(Math.random() * (9999 - 1111) + 1000).toString();
-    const expiresIn = new Date(Date.now() + 30 * 1000);
+    const expiresIn = new Date(Date.now() + 60 * 1000);
 
     saveOtp(email, otp, expiresIn);
     const subject = 'Your OTP Code';
-    const content = `Your OTP is ${otp}. It will expire in 30 seconds.`;
+    const content = `Your OTP is ${otp}. It will expire in 1 minut.`;
     await sendEmail(email, subject, content);
     response.status = 200;
-    response.message = {otp, expiresIn};
+    response.message = {Message: "OTP sended to your mail and it will expire in 1 minut"};
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;

@@ -47,8 +47,6 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       },
     });
 
-    const activationLink = process.env.CLIENT_URL;
-
     sendEmail(email, 'Activate Your Account', emailContent);
     response.status = 200;
     response.message = {
