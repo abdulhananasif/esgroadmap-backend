@@ -53,7 +53,6 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       Message: 'Signup successful, Check your email account activation',
     };
   } catch (err: any) {
-    console.log("🚀 ~ signup ~ err:", err)
     response.status = 400;
     response.message = err.message;
   }

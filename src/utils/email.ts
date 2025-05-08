@@ -16,9 +16,7 @@ const generateMailOptions = (
 });
 
 const generateTransporter = () =>
-{  
-  console.log("🚀 ~ process.env.EMAIL_PASSWORD:", process.env.EMAIL_PASSWORD)
-      console.log("🚀 ~ process.env.EMAIL:", process.env.EMAIL)
+{
   return nodemailer.createTransport({
     host: 'esgroadmap.com',
     port: 465,

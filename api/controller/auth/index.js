@@ -37,7 +37,6 @@ export const signup = async (req, res) => {
         };
     }
     catch (err) {
-        console.log("🚀 ~ signup ~ err:", err);
         response.status = 400;
         response.message = err.message;
     }
