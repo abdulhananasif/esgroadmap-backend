@@ -30,7 +30,6 @@ export const signup = async (req, res) => {
                 isActive: false,
             },
         });
-        const activationLink = process.env.CLIENT_URL;
         sendEmail(email, 'Activate Your Account', emailContent);
         response.status = 200;
         response.message = {
@@ -38,6 +37,7 @@ export const signup = async (req, res) => {
         };
     }
     catch (err) {
+        console.log("🚀 ~ signup ~ err:", err);
         response.status = 400;
         response.message = err.message;
     }
