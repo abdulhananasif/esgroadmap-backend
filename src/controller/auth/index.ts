@@ -99,7 +99,6 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
     response.status = 400;
     response.message = err.message;
   }
-  res.status(response.status).json(response.message);
 };
 
 export const regenerateToken = async (
