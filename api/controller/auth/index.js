@@ -80,7 +80,6 @@ export const signin = async (req, res) => {
         response.status = 400;
         response.message = err.message;
     }
-    res.status(response.status).json(response.message);
 };
 export const regenerateToken = async (req, res) => {
     const { accessToken, refreshToken } = req.cookies;
