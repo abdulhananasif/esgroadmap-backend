@@ -7,7 +7,7 @@ const authenticateUser = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log('🚀 ~ req:', req.cookies);
+  console.log('🚀 ~ req-middleware:', req.cookies);
   const {accessToken} = req.cookies;
   if (!accessToken) {
     res.status(403).json({message: 'Authentication required'});
