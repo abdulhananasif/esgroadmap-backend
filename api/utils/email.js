@@ -1,27 +1,22 @@
-import nodemailer from 'nodemailer';
-const generateEmailHTMLContent = (content) => `
-  <p>${content}</p>
-`;
-const generateMailOptions = (recipient, subject, content) => ({
-    from: process.env.EMAIL,
-    to: recipient,
-    subject: subject,
-    html: generateEmailHTMLContent(content),
-});
-const generateTransporter = () => {
-    return nodemailer.createTransport({
-        host: 'esgroadmap.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.EMAIL,
-            pass: process.env.EMAIL_PASSWORD,
-        },
-    });
-};
-export const sendEmail = async (recipient, subject, content) => {
-    console.log("🚀 ~ recipient:", recipient);
-    const transporter = generateTransporter();
-    const mailOptions = generateMailOptions(recipient, subject, content);
-    await transporter.sendMail(mailOptions);
+import axios from 'axios';
+const API_KEY = process.env.BREVO_API_KEY;
+const BREVO_EMAIL = process.env.BREVO_EMAIL;
+const EMAIL_FROM_NAME = process.env.EMAIL_FROM_NAME;
+export const sendEmail = async (recipient, subject, htmlContent) => {
+    try {
+        const response = await axios.post('https://api.brevo.com/v3/smtp/email', {
+            sender: { name: EMAIL_FROM_NAME, email: BREVO_EMAIL },
+            to: [{ email: recipient }],
+            subject,
+            htmlContent,
+        }, {
+            headers: {
+                'api-key': API_KEY,
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+    catch (error) {
+        throw new Error('Email sending failed');
+    }
 };

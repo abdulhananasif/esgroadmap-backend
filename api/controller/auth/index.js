@@ -5,8 +5,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { generateAccessToken, generateRefreshToken, setAuthCookies, } from '../../utils/token.js';
 import { comparePasswords, hashPassword } from '../../utils/password.js';
-import { sendEmail } from '../../utils/email.js';
 import { emailContent } from '../../utils/emailContent.js';
+import { sendEmail } from '../../utils/email.js';
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
 const refresh = process.env.REFRESH_TOKEN_SECRET;
@@ -30,7 +30,7 @@ export const signup = async (req, res) => {
                 isActive: false,
             },
         });
-        sendEmail(email, 'Activate Your Account', emailContent);
+        await sendEmail(email, "Account activation mail:", emailContent);
         response.status = 200;
         response.message = {
             Message: 'Signup successful, Check your email account activation',
