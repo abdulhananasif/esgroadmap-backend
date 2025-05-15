@@ -7,6 +7,7 @@ export const carbonReduction = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<void> => {
+  console.log("🚀 ~ req:", req)
   let response: {
     status?: number;
     message?: string | Object | Array<Object>;

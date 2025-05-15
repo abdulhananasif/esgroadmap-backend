@@ -1,9 +1,8 @@
 import express from 'express';
+import authenticateUser from '../../middleware/authenticateUser.js';
 import { carbonReduction, renewables, sentenceGender, supplyChain, wasteAndRecycling, waterManagement, } from '../../controller/tool/index.js';
 const toolRouter = express.Router();
-toolRouter.get('/carbonReduction', 
-// authenticateUser as unknown as express.RequestHandler,
-carbonReduction);
+toolRouter.get('/carbonReduction', authenticateUser, carbonReduction);
 toolRouter.get('/wasteAndRecycling', 
 // authenticateUser as unknown as express.RequestHandler,
 wasteAndRecycling);

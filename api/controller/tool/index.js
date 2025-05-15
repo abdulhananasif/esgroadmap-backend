@@ -1,6 +1,7 @@
 import { prisma } from '../../server.js';
 import { safeSearch } from '../../utils/search.js';
 export const carbonReduction = async (req, res) => {
+    console.log("🚀 ~ req:", req);
     let response = {};
     try {
         const page = parseInt(req.query.page) || 1;
