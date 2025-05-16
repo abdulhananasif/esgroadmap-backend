@@ -94,15 +94,10 @@ export const regenerateToken = async (req, res) => {
         return;
     }
     catch (accessErr) {
-        if (accessErr.name !== 'TokenExpiredError') {
-            console.error('Invalid access token:', accessErr.message);
-            res.status(401).json({ message: 'Invalid access token' });
-            return;
-        }
         try {
             const decodedRefresh = jwt.verify(refreshToken, refresh);
             const newAccessToken = generateAccessToken(decodedRefresh.id);
-            const newRefreshToken = generateAccessToken(decodedRefresh.id);
+            const newRefreshToken = generateRefreshToken(decodedRefresh.id);
             setAuthCookies(res, newAccessToken, newRefreshToken);
             console.log('New tokens generated');
             res.status(200).json({ message: 'Access and Refresh tokens are re-generated' });
