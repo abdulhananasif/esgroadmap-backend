@@ -84,45 +84,34 @@ export const signin = async (req, res) => {
 export const regenerateToken = async (req, res) => {
     const { accessToken, refreshToken } = req.cookies;
     if (!refreshToken) {
-        res.status(400).json('Refresh token is missing');
+        console.log('Refresh token missing');
+        res.status(400).json({ message: 'Refresh token is missing' });
+        return;
     }
     try {
-        const accessDecoded = await new Promise((resolve, reject) => {
-            jwt.verify(accessToken, access, (err, decoded) => {
-                if (!err) {
-                    reject(new Error('Access token is still valid'));
-                }
-                else if (err.name !== 'TokenExpiredError') {
-                    reject(new Error('Invalid access token'));
-                }
-                else {
-                    resolve(decoded);
-                }
-            });
-        });
+        jwt.verify(accessToken, access);
+        res.status(200).json({ message: 'Access token is still valid' });
+        return;
     }
-    catch (error) {
-        if (error.message === 'Access token is still valid') {
-            res.status(400).json(error.message);
+    catch (accessErr) {
+        if (accessErr.name !== 'TokenExpiredError') {
+            console.error('Invalid access token:', accessErr.message);
+            res.status(401).json({ message: 'Invalid access token' });
+            return;
         }
         try {
-            const refreshDecoded = await new Promise((resolve, reject) => {
-                jwt.verify(refreshToken, refresh, (err, decoded) => {
-                    if (err) {
-                        reject(new Error('Refresh token is invalid or expired'));
-                    }
-                    else {
-                        resolve(decoded);
-                    }
-                });
-            });
-            const newAccessToken = generateAccessToken(refreshDecoded.id);
-            const newRefreshToken = generateAccessToken(refreshDecoded.id);
+            const decodedRefresh = jwt.verify(refreshToken, refresh);
+            const newAccessToken = generateAccessToken(decodedRefresh.id);
+            const newRefreshToken = generateAccessToken(decodedRefresh.id);
             setAuthCookies(res, newAccessToken, newRefreshToken);
-            res.status(200).json('Access and Refresh token re-generated');
+            console.log('New tokens generated');
+            res.status(200).json({ message: 'Access and Refresh tokens are re-generated' });
+            return;
         }
-        catch (refreshError) {
-            res.status(400).json(refreshError.message);
+        catch (refreshErr) {
+            console.error('Invalid or expired refresh token:', refreshErr.message);
+            res.status(401).json({ message: 'Refresh token is invalid or expired' });
+            return;
         }
     }
 };
