@@ -303,3 +303,56 @@ export const renewables = async (
   }
   res.status(response.status).json(response.message);
 };
+
+export const saveSearch = async (req:AuthenticatedRequest , res:Response):Promise<void> => {
+  let response: {
+    status?: number;
+    message?: string | Object | Array<Object>;
+  } = {};
+  try{
+    const search = req.body.search;
+    console.log("🚀 ~ saveSearch ~ search:", search)
+    const user = req.user;
+    console.log("🚀 ~ saveSearch ~ user:", user)
+    if(!search){
+      response.status= 400;
+      response.message= "Search is required"
+      res.status(response.status).json(response.message);
+      return
+    }
+    if(!user){
+      response.status = 400;
+      response.message = "User not found"
+      res.status(response.status).json(response.message);
+      return;
+    }
+
+    const findSearch = await prisma.search.findFirst({
+  where: {
+    keyword: search,
+  },
+});
+
+    if(findSearch){
+      response.status = 400;
+      response.message = "Search is already exist in storage";
+      res.status(response.status).json(response.message);
+      return;
+    }
+
+    const newSearch = await prisma.search.create({
+  data: {
+    userId: user.id,
+    keyword: search,
+  },
+});
+    response.status = 200;
+    response.message = {message: `search saved successfully` , search: newSearch}
+
+  }catch(err){
+    console.log("🚀 ~ saveSearch ~ err:", err)
+    response.status = 400;
+    response.message = 'Failed to save'
+  }
+  res.status(response.status).json(response.message);
+}
