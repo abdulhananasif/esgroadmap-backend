@@ -967,6 +967,14 @@ exports.Prisma.SentenceallviewScalarFieldEnum = {
   CarbonSentenceAvailable: 'CarbonSentenceAvailable'
 };
 
+exports.Prisma.SearchScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  keyword: 'keyword',
+  tableName: 'tableName',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1602,6 +1610,12 @@ exports.Prisma.sentenceallviewOrderByRelevanceFieldEnum = {
   CommentsNotes: 'CommentsNotes',
   CarbonSentenceAvailable: 'CarbonSentenceAvailable'
 };
+
+exports.Prisma.SearchOrderByRelevanceFieldEnum = {
+  id: 'id',
+  keyword: 'keyword',
+  tableName: 'tableName'
+};
 exports.wp_wpdatacharts_engine = exports.$Enums.wp_wpdatacharts_engine = {
   google: 'google',
   highcharts: 'highcharts',
@@ -1699,7 +1713,8 @@ exports.Prisma.ModelName = {
   TicketComment: 'TicketComment',
   UserSubscription: 'UserSubscription',
   Portfolio: 'Portfolio',
-  sentenceallview: 'sentenceallview'
+  sentenceallview: 'sentenceallview',
+  Search: 'Search'
 };
 
 /**

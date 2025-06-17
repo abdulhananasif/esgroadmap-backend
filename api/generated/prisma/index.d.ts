@@ -248,6 +248,11 @@ export type Portfolio = $Result.DefaultSelection<Prisma.$PortfolioPayload>
  * 
  */
 export type sentenceallview = $Result.DefaultSelection<Prisma.$sentenceallviewPayload>
+/**
+ * Model Search
+ * 
+ */
+export type Search = $Result.DefaultSelection<Prisma.$SearchPayload>
 
 /**
  * Enums
@@ -926,6 +931,16 @@ export class PrismaClient<
     * ```
     */
   get sentenceallview(): Prisma.sentenceallviewDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.search`: Exposes CRUD operations for the **Search** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Searches
+    * const searches = await prisma.search.findMany()
+    * ```
+    */
+  get search(): Prisma.SearchDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1412,7 +1427,8 @@ export namespace Prisma {
     TicketComment: 'TicketComment',
     UserSubscription: 'UserSubscription',
     Portfolio: 'Portfolio',
-    sentenceallview: 'sentenceallview'
+    sentenceallview: 'sentenceallview',
+    Search: 'Search'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1431,7 +1447,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "uniqueFactorsTable" | "companyUniverse" | "companyData" | "companyData2" | "percentageTable" | "roadmapCarbon" | "sentenceAll" | "targetSentence" | "testable" | "wp_actionscheduler_actions" | "wp_actionscheduler_claims" | "wp_actionscheduler_groups" | "wp_actionscheduler_logs" | "wp_aioseo_notifications" | "wp_aioseo_posts" | "wp_commentmeta" | "wp_comments" | "wp_links" | "wp_nextend2_image_storage" | "wp_nextend2_section_storage" | "wp_nextend2_smartslider3_generators" | "wp_nextend2_smartslider3_sliders" | "wp_nextend2_smartslider3_sliders_xref" | "wp_nextend2_smartslider3_slides" | "wp_options" | "wp_postmeta" | "wp_posts" | "wp_term_relationships" | "wp_term_taxonomy" | "wp_termmeta" | "wp_terms" | "wp_um_metadata" | "wp_user_registration_sessions" | "wp_usermeta" | "wp_users" | "wp_wpdatacharts" | "wp_wpdatatables" | "wp_wpdatatables_columns" | "wp_wpdatatables_rows" | "wp_wpforms_tasks_meta" | "user" | "ticket" | "ticketDocument" | "ticketComment" | "userSubscription" | "portfolio" | "sentenceallview"
+      modelProps: "uniqueFactorsTable" | "companyUniverse" | "companyData" | "companyData2" | "percentageTable" | "roadmapCarbon" | "sentenceAll" | "targetSentence" | "testable" | "wp_actionscheduler_actions" | "wp_actionscheduler_claims" | "wp_actionscheduler_groups" | "wp_actionscheduler_logs" | "wp_aioseo_notifications" | "wp_aioseo_posts" | "wp_commentmeta" | "wp_comments" | "wp_links" | "wp_nextend2_image_storage" | "wp_nextend2_section_storage" | "wp_nextend2_smartslider3_generators" | "wp_nextend2_smartslider3_sliders" | "wp_nextend2_smartslider3_sliders_xref" | "wp_nextend2_smartslider3_slides" | "wp_options" | "wp_postmeta" | "wp_posts" | "wp_term_relationships" | "wp_term_taxonomy" | "wp_termmeta" | "wp_terms" | "wp_um_metadata" | "wp_user_registration_sessions" | "wp_usermeta" | "wp_users" | "wp_wpdatacharts" | "wp_wpdatatables" | "wp_wpdatatables_columns" | "wp_wpdatatables_rows" | "wp_wpforms_tasks_meta" | "user" | "ticket" | "ticketDocument" | "ticketComment" | "userSubscription" | "portfolio" | "sentenceallview" | "search"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4537,6 +4553,72 @@ export namespace Prisma {
           }
         }
       }
+      Search: {
+        payload: Prisma.$SearchPayload<ExtArgs>
+        fields: Prisma.SearchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SearchFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SearchFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>
+          }
+          findFirst: {
+            args: Prisma.SearchFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SearchFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>
+          }
+          findMany: {
+            args: Prisma.SearchFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>[]
+          }
+          create: {
+            args: Prisma.SearchCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>
+          }
+          createMany: {
+            args: Prisma.SearchCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SearchDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>
+          }
+          update: {
+            args: Prisma.SearchUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>
+          }
+          deleteMany: {
+            args: Prisma.SearchDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SearchUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SearchUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SearchPayload>
+          }
+          aggregate: {
+            args: Prisma.SearchAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSearch>
+          }
+          groupBy: {
+            args: Prisma.SearchGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SearchGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SearchCountArgs<ExtArgs>
+            result: $Utils.Optional<SearchCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4668,6 +4750,7 @@ export namespace Prisma {
     userSubscription?: UserSubscriptionOmit
     portfolio?: PortfolioOmit
     sentenceallview?: sentenceallviewOmit
+    search?: SearchOmit
   }
 
   /* Types for Logging */
@@ -4766,6 +4849,7 @@ export namespace Prisma {
     ticketComments: number
     tickets: number
     UserSubscription: number
+    search: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4773,6 +4857,7 @@ export namespace Prisma {
     ticketComments?: boolean | UserCountOutputTypeCountTicketCommentsArgs
     tickets?: boolean | UserCountOutputTypeCountTicketsArgs
     UserSubscription?: boolean | UserCountOutputTypeCountUserSubscriptionArgs
+    search?: boolean | UserCountOutputTypeCountSearchArgs
   }
 
   // Custom InputTypes
@@ -4812,6 +4897,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountUserSubscriptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserSubscriptionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SearchWhereInput
   }
 
 
@@ -46385,6 +46477,7 @@ export namespace Prisma {
     ticketComments?: boolean | User$ticketCommentsArgs<ExtArgs>
     tickets?: boolean | User$ticketsArgs<ExtArgs>
     UserSubscription?: boolean | User$UserSubscriptionArgs<ExtArgs>
+    search?: boolean | User$searchArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -46411,6 +46504,7 @@ export namespace Prisma {
     ticketComments?: boolean | User$ticketCommentsArgs<ExtArgs>
     tickets?: boolean | User$ticketsArgs<ExtArgs>
     UserSubscription?: boolean | User$UserSubscriptionArgs<ExtArgs>
+    search?: boolean | User$searchArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -46421,6 +46515,7 @@ export namespace Prisma {
       ticketComments: Prisma.$TicketCommentPayload<ExtArgs>[]
       tickets: Prisma.$TicketPayload<ExtArgs>[]
       UserSubscription: Prisma.$UserSubscriptionPayload<ExtArgs>[]
+      search: Prisma.$SearchPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -46779,6 +46874,7 @@ export namespace Prisma {
     ticketComments<T extends User$ticketCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$ticketCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tickets<T extends User$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, User$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     UserSubscription<T extends User$UserSubscriptionArgs<ExtArgs> = {}>(args?: Subset<T, User$UserSubscriptionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    search<T extends User$searchArgs<ExtArgs> = {}>(args?: Subset<T, User$searchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -47256,6 +47352,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserSubscriptionScalarFieldEnum | UserSubscriptionScalarFieldEnum[]
+  }
+
+  /**
+   * User.search
+   */
+  export type User$searchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    where?: SearchWhereInput
+    orderBy?: SearchOrderByWithRelationInput | SearchOrderByWithRelationInput[]
+    cursor?: SearchWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SearchScalarFieldEnum | SearchScalarFieldEnum[]
   }
 
   /**
@@ -53882,6 +54002,969 @@ export namespace Prisma {
 
 
   /**
+   * Model Search
+   */
+
+  export type AggregateSearch = {
+    _count: SearchCountAggregateOutputType | null
+    _avg: SearchAvgAggregateOutputType | null
+    _sum: SearchSumAggregateOutputType | null
+    _min: SearchMinAggregateOutputType | null
+    _max: SearchMaxAggregateOutputType | null
+  }
+
+  export type SearchAvgAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type SearchSumAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type SearchMinAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    keyword: string | null
+    tableName: string | null
+    createdAt: Date | null
+  }
+
+  export type SearchMaxAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    keyword: string | null
+    tableName: string | null
+    createdAt: Date | null
+  }
+
+  export type SearchCountAggregateOutputType = {
+    id: number
+    userId: number
+    keyword: number
+    tableName: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type SearchAvgAggregateInputType = {
+    userId?: true
+  }
+
+  export type SearchSumAggregateInputType = {
+    userId?: true
+  }
+
+  export type SearchMinAggregateInputType = {
+    id?: true
+    userId?: true
+    keyword?: true
+    tableName?: true
+    createdAt?: true
+  }
+
+  export type SearchMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    keyword?: true
+    tableName?: true
+    createdAt?: true
+  }
+
+  export type SearchCountAggregateInputType = {
+    id?: true
+    userId?: true
+    keyword?: true
+    tableName?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type SearchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Search to aggregate.
+     */
+    where?: SearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Searches to fetch.
+     */
+    orderBy?: SearchOrderByWithRelationInput | SearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Searches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Searches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Searches
+    **/
+    _count?: true | SearchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SearchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SearchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SearchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SearchMaxAggregateInputType
+  }
+
+  export type GetSearchAggregateType<T extends SearchAggregateArgs> = {
+        [P in keyof T & keyof AggregateSearch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSearch[P]>
+      : GetScalarType<T[P], AggregateSearch[P]>
+  }
+
+
+
+
+  export type SearchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SearchWhereInput
+    orderBy?: SearchOrderByWithAggregationInput | SearchOrderByWithAggregationInput[]
+    by: SearchScalarFieldEnum[] | SearchScalarFieldEnum
+    having?: SearchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SearchCountAggregateInputType | true
+    _avg?: SearchAvgAggregateInputType
+    _sum?: SearchSumAggregateInputType
+    _min?: SearchMinAggregateInputType
+    _max?: SearchMaxAggregateInputType
+  }
+
+  export type SearchGroupByOutputType = {
+    id: string
+    userId: number
+    keyword: string
+    tableName: string
+    createdAt: Date
+    _count: SearchCountAggregateOutputType | null
+    _avg: SearchAvgAggregateOutputType | null
+    _sum: SearchSumAggregateOutputType | null
+    _min: SearchMinAggregateOutputType | null
+    _max: SearchMaxAggregateOutputType | null
+  }
+
+  type GetSearchGroupByPayload<T extends SearchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SearchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SearchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SearchGroupByOutputType[P]>
+            : GetScalarType<T[P], SearchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SearchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    keyword?: boolean
+    tableName?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["search"]>
+
+
+
+  export type SearchSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    keyword?: boolean
+    tableName?: boolean
+    createdAt?: boolean
+  }
+
+  export type SearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "keyword" | "tableName" | "createdAt", ExtArgs["result"]["search"]>
+  export type SearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Search"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: number
+      keyword: string
+      tableName: string
+      createdAt: Date
+    }, ExtArgs["result"]["search"]>
+    composites: {}
+  }
+
+  type SearchGetPayload<S extends boolean | null | undefined | SearchDefaultArgs> = $Result.GetResult<Prisma.$SearchPayload, S>
+
+  type SearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SearchFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SearchCountAggregateInputType | true
+    }
+
+  export interface SearchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Search'], meta: { name: 'Search' } }
+    /**
+     * Find zero or one Search that matches the filter.
+     * @param {SearchFindUniqueArgs} args - Arguments to find a Search
+     * @example
+     * // Get one Search
+     * const search = await prisma.search.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SearchFindUniqueArgs>(args: SelectSubset<T, SearchFindUniqueArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Search that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SearchFindUniqueOrThrowArgs} args - Arguments to find a Search
+     * @example
+     * // Get one Search
+     * const search = await prisma.search.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SearchFindUniqueOrThrowArgs>(args: SelectSubset<T, SearchFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Search that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchFindFirstArgs} args - Arguments to find a Search
+     * @example
+     * // Get one Search
+     * const search = await prisma.search.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SearchFindFirstArgs>(args?: SelectSubset<T, SearchFindFirstArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Search that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchFindFirstOrThrowArgs} args - Arguments to find a Search
+     * @example
+     * // Get one Search
+     * const search = await prisma.search.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SearchFindFirstOrThrowArgs>(args?: SelectSubset<T, SearchFindFirstOrThrowArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Searches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Searches
+     * const searches = await prisma.search.findMany()
+     * 
+     * // Get first 10 Searches
+     * const searches = await prisma.search.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const searchWithIdOnly = await prisma.search.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SearchFindManyArgs>(args?: SelectSubset<T, SearchFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Search.
+     * @param {SearchCreateArgs} args - Arguments to create a Search.
+     * @example
+     * // Create one Search
+     * const Search = await prisma.search.create({
+     *   data: {
+     *     // ... data to create a Search
+     *   }
+     * })
+     * 
+     */
+    create<T extends SearchCreateArgs>(args: SelectSubset<T, SearchCreateArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Searches.
+     * @param {SearchCreateManyArgs} args - Arguments to create many Searches.
+     * @example
+     * // Create many Searches
+     * const search = await prisma.search.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SearchCreateManyArgs>(args?: SelectSubset<T, SearchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Search.
+     * @param {SearchDeleteArgs} args - Arguments to delete one Search.
+     * @example
+     * // Delete one Search
+     * const Search = await prisma.search.delete({
+     *   where: {
+     *     // ... filter to delete one Search
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SearchDeleteArgs>(args: SelectSubset<T, SearchDeleteArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Search.
+     * @param {SearchUpdateArgs} args - Arguments to update one Search.
+     * @example
+     * // Update one Search
+     * const search = await prisma.search.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SearchUpdateArgs>(args: SelectSubset<T, SearchUpdateArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Searches.
+     * @param {SearchDeleteManyArgs} args - Arguments to filter Searches to delete.
+     * @example
+     * // Delete a few Searches
+     * const { count } = await prisma.search.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SearchDeleteManyArgs>(args?: SelectSubset<T, SearchDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Searches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Searches
+     * const search = await prisma.search.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SearchUpdateManyArgs>(args: SelectSubset<T, SearchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Search.
+     * @param {SearchUpsertArgs} args - Arguments to update or create a Search.
+     * @example
+     * // Update or create a Search
+     * const search = await prisma.search.upsert({
+     *   create: {
+     *     // ... data to create a Search
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Search we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SearchUpsertArgs>(args: SelectSubset<T, SearchUpsertArgs<ExtArgs>>): Prisma__SearchClient<$Result.GetResult<Prisma.$SearchPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Searches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchCountArgs} args - Arguments to filter Searches to count.
+     * @example
+     * // Count the number of Searches
+     * const count = await prisma.search.count({
+     *   where: {
+     *     // ... the filter for the Searches we want to count
+     *   }
+     * })
+    **/
+    count<T extends SearchCountArgs>(
+      args?: Subset<T, SearchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SearchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Search.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SearchAggregateArgs>(args: Subset<T, SearchAggregateArgs>): Prisma.PrismaPromise<GetSearchAggregateType<T>>
+
+    /**
+     * Group by Search.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SearchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SearchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SearchGroupByArgs['orderBy'] }
+        : { orderBy?: SearchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SearchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSearchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Search model
+   */
+  readonly fields: SearchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Search.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Search model
+   */
+  interface SearchFieldRefs {
+    readonly id: FieldRef<"Search", 'String'>
+    readonly userId: FieldRef<"Search", 'Int'>
+    readonly keyword: FieldRef<"Search", 'String'>
+    readonly tableName: FieldRef<"Search", 'String'>
+    readonly createdAt: FieldRef<"Search", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Search findUnique
+   */
+  export type SearchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Search to fetch.
+     */
+    where: SearchWhereUniqueInput
+  }
+
+  /**
+   * Search findUniqueOrThrow
+   */
+  export type SearchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Search to fetch.
+     */
+    where: SearchWhereUniqueInput
+  }
+
+  /**
+   * Search findFirst
+   */
+  export type SearchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Search to fetch.
+     */
+    where?: SearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Searches to fetch.
+     */
+    orderBy?: SearchOrderByWithRelationInput | SearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Searches.
+     */
+    cursor?: SearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Searches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Searches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Searches.
+     */
+    distinct?: SearchScalarFieldEnum | SearchScalarFieldEnum[]
+  }
+
+  /**
+   * Search findFirstOrThrow
+   */
+  export type SearchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Search to fetch.
+     */
+    where?: SearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Searches to fetch.
+     */
+    orderBy?: SearchOrderByWithRelationInput | SearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Searches.
+     */
+    cursor?: SearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Searches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Searches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Searches.
+     */
+    distinct?: SearchScalarFieldEnum | SearchScalarFieldEnum[]
+  }
+
+  /**
+   * Search findMany
+   */
+  export type SearchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Searches to fetch.
+     */
+    where?: SearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Searches to fetch.
+     */
+    orderBy?: SearchOrderByWithRelationInput | SearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Searches.
+     */
+    cursor?: SearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Searches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Searches.
+     */
+    skip?: number
+    distinct?: SearchScalarFieldEnum | SearchScalarFieldEnum[]
+  }
+
+  /**
+   * Search create
+   */
+  export type SearchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Search.
+     */
+    data: XOR<SearchCreateInput, SearchUncheckedCreateInput>
+  }
+
+  /**
+   * Search createMany
+   */
+  export type SearchCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Searches.
+     */
+    data: SearchCreateManyInput | SearchCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Search update
+   */
+  export type SearchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Search.
+     */
+    data: XOR<SearchUpdateInput, SearchUncheckedUpdateInput>
+    /**
+     * Choose, which Search to update.
+     */
+    where: SearchWhereUniqueInput
+  }
+
+  /**
+   * Search updateMany
+   */
+  export type SearchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Searches.
+     */
+    data: XOR<SearchUpdateManyMutationInput, SearchUncheckedUpdateManyInput>
+    /**
+     * Filter which Searches to update
+     */
+    where?: SearchWhereInput
+    /**
+     * Limit how many Searches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Search upsert
+   */
+  export type SearchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Search to update in case it exists.
+     */
+    where: SearchWhereUniqueInput
+    /**
+     * In case the Search found by the `where` argument doesn't exist, create a new Search with this data.
+     */
+    create: XOR<SearchCreateInput, SearchUncheckedCreateInput>
+    /**
+     * In case the Search was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SearchUpdateInput, SearchUncheckedUpdateInput>
+  }
+
+  /**
+   * Search delete
+   */
+  export type SearchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+    /**
+     * Filter which Search to delete.
+     */
+    where: SearchWhereUniqueInput
+  }
+
+  /**
+   * Search deleteMany
+   */
+  export type SearchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Searches to delete
+     */
+    where?: SearchWhereInput
+    /**
+     * Limit how many Searches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Search without action
+   */
+  export type SearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Search
+     */
+    select?: SearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Search
+     */
+    omit?: SearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SearchInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -54886,6 +55969,17 @@ export namespace Prisma {
   export type SentenceallviewScalarFieldEnum = (typeof SentenceallviewScalarFieldEnum)[keyof typeof SentenceallviewScalarFieldEnum]
 
 
+  export const SearchScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    keyword: 'keyword',
+    tableName: 'tableName',
+    createdAt: 'createdAt'
+  };
+
+  export type SearchScalarFieldEnum = (typeof SearchScalarFieldEnum)[keyof typeof SearchScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -55664,6 +56758,15 @@ export namespace Prisma {
   };
 
   export type sentenceallviewOrderByRelevanceFieldEnum = (typeof sentenceallviewOrderByRelevanceFieldEnum)[keyof typeof sentenceallviewOrderByRelevanceFieldEnum]
+
+
+  export const SearchOrderByRelevanceFieldEnum: {
+    id: 'id',
+    keyword: 'keyword',
+    tableName: 'tableName'
+  };
+
+  export type SearchOrderByRelevanceFieldEnum = (typeof SearchOrderByRelevanceFieldEnum)[keyof typeof SearchOrderByRelevanceFieldEnum]
 
 
   /**
@@ -59965,6 +61068,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentListRelationFilter
     tickets?: TicketListRelationFilter
     UserSubscription?: UserSubscriptionListRelationFilter
+    search?: SearchListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -59984,6 +61088,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentOrderByRelationAggregateInput
     tickets?: TicketOrderByRelationAggregateInput
     UserSubscription?: UserSubscriptionOrderByRelationAggregateInput
+    search?: SearchOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -60007,6 +61112,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentListRelationFilter
     tickets?: TicketListRelationFilter
     UserSubscription?: UserSubscriptionListRelationFilter
+    search?: SearchListRelationFilter
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
@@ -60744,6 +61850,64 @@ export namespace Prisma {
     WorkedBy?: StringNullableWithAggregatesFilter<"sentenceallview"> | string | null
     CommentsNotes?: StringNullableWithAggregatesFilter<"sentenceallview"> | string | null
     CarbonSentenceAvailable?: StringNullableWithAggregatesFilter<"sentenceallview"> | string | null
+  }
+
+  export type SearchWhereInput = {
+    AND?: SearchWhereInput | SearchWhereInput[]
+    OR?: SearchWhereInput[]
+    NOT?: SearchWhereInput | SearchWhereInput[]
+    id?: StringFilter<"Search"> | string
+    userId?: IntFilter<"Search"> | number
+    keyword?: StringFilter<"Search"> | string
+    tableName?: StringFilter<"Search"> | string
+    createdAt?: DateTimeFilter<"Search"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type SearchOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    keyword?: SortOrder
+    tableName?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    _relevance?: SearchOrderByRelevanceInput
+  }
+
+  export type SearchWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SearchWhereInput | SearchWhereInput[]
+    OR?: SearchWhereInput[]
+    NOT?: SearchWhereInput | SearchWhereInput[]
+    userId?: IntFilter<"Search"> | number
+    keyword?: StringFilter<"Search"> | string
+    tableName?: StringFilter<"Search"> | string
+    createdAt?: DateTimeFilter<"Search"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type SearchOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    keyword?: SortOrder
+    tableName?: SortOrder
+    createdAt?: SortOrder
+    _count?: SearchCountOrderByAggregateInput
+    _avg?: SearchAvgOrderByAggregateInput
+    _max?: SearchMaxOrderByAggregateInput
+    _min?: SearchMinOrderByAggregateInput
+    _sum?: SearchSumOrderByAggregateInput
+  }
+
+  export type SearchScalarWhereWithAggregatesInput = {
+    AND?: SearchScalarWhereWithAggregatesInput | SearchScalarWhereWithAggregatesInput[]
+    OR?: SearchScalarWhereWithAggregatesInput[]
+    NOT?: SearchScalarWhereWithAggregatesInput | SearchScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Search"> | string
+    userId?: IntWithAggregatesFilter<"Search"> | number
+    keyword?: StringWithAggregatesFilter<"Search"> | string
+    tableName?: StringWithAggregatesFilter<"Search"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Search"> | Date | string
   }
 
   export type UniqueFactorsTableCreateInput = {
@@ -65742,6 +66906,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
+    search?: SearchCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -65761,6 +66926,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    search?: SearchUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -65779,6 +66945,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
+    search?: SearchUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -65798,6 +66965,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    search?: SearchUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -66653,6 +67821,61 @@ export namespace Prisma {
     WorkedBy?: NullableStringFieldUpdateOperationsInput | string | null
     CommentsNotes?: NullableStringFieldUpdateOperationsInput | string | null
     CarbonSentenceAvailable?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SearchCreateInput = {
+    id?: string
+    keyword: string
+    tableName: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutSearchInput
+  }
+
+  export type SearchUncheckedCreateInput = {
+    id?: string
+    userId: number
+    keyword: string
+    tableName: string
+    createdAt?: Date | string
+  }
+
+  export type SearchUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSearchNestedInput
+  }
+
+  export type SearchUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchCreateManyInput = {
+    id?: string
+    userId: number
+    keyword: string
+    tableName: string
+    createdAt?: Date | string
+  }
+
+  export type SearchUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -69866,6 +71089,12 @@ export namespace Prisma {
     none?: UserSubscriptionWhereInput
   }
 
+  export type SearchListRelationFilter = {
+    every?: SearchWhereInput
+    some?: SearchWhereInput
+    none?: SearchWhereInput
+  }
+
   export type PortfolioOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -69879,6 +71108,10 @@ export namespace Prisma {
   }
 
   export type UserSubscriptionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SearchOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -70473,6 +71706,44 @@ export namespace Prisma {
     sentence_water?: SortOrder
   }
 
+  export type SearchOrderByRelevanceInput = {
+    fields: SearchOrderByRelevanceFieldEnum | SearchOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type SearchCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    keyword?: SortOrder
+    tableName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SearchAvgOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
+  export type SearchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    keyword?: SortOrder
+    tableName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SearchMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    keyword?: SortOrder
+    tableName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SearchSumOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -70581,6 +71852,13 @@ export namespace Prisma {
     connect?: UserSubscriptionWhereUniqueInput | UserSubscriptionWhereUniqueInput[]
   }
 
+  export type SearchCreateNestedManyWithoutUserInput = {
+    create?: XOR<SearchCreateWithoutUserInput, SearchUncheckedCreateWithoutUserInput> | SearchCreateWithoutUserInput[] | SearchUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchCreateOrConnectWithoutUserInput | SearchCreateOrConnectWithoutUserInput[]
+    createMany?: SearchCreateManyUserInputEnvelope
+    connect?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+  }
+
   export type PortfolioUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
@@ -70607,6 +71885,13 @@ export namespace Prisma {
     connectOrCreate?: UserSubscriptionCreateOrConnectWithoutUserInput | UserSubscriptionCreateOrConnectWithoutUserInput[]
     createMany?: UserSubscriptionCreateManyUserInputEnvelope
     connect?: UserSubscriptionWhereUniqueInput | UserSubscriptionWhereUniqueInput[]
+  }
+
+  export type SearchUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SearchCreateWithoutUserInput, SearchUncheckedCreateWithoutUserInput> | SearchCreateWithoutUserInput[] | SearchUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchCreateOrConnectWithoutUserInput | SearchCreateOrConnectWithoutUserInput[]
+    createMany?: SearchCreateManyUserInputEnvelope
+    connect?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
   }
 
   export type PortfolioUpdateManyWithoutUserNestedInput = {
@@ -70665,6 +71950,20 @@ export namespace Prisma {
     deleteMany?: UserSubscriptionScalarWhereInput | UserSubscriptionScalarWhereInput[]
   }
 
+  export type SearchUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SearchCreateWithoutUserInput, SearchUncheckedCreateWithoutUserInput> | SearchCreateWithoutUserInput[] | SearchUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchCreateOrConnectWithoutUserInput | SearchCreateOrConnectWithoutUserInput[]
+    upsert?: SearchUpsertWithWhereUniqueWithoutUserInput | SearchUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SearchCreateManyUserInputEnvelope
+    set?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    disconnect?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    delete?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    connect?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    update?: SearchUpdateWithWhereUniqueWithoutUserInput | SearchUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SearchUpdateManyWithWhereWithoutUserInput | SearchUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SearchScalarWhereInput | SearchScalarWhereInput[]
+  }
+
   export type PortfolioUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
@@ -70719,6 +72018,20 @@ export namespace Prisma {
     update?: UserSubscriptionUpdateWithWhereUniqueWithoutUserInput | UserSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UserSubscriptionUpdateManyWithWhereWithoutUserInput | UserSubscriptionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UserSubscriptionScalarWhereInput | UserSubscriptionScalarWhereInput[]
+  }
+
+  export type SearchUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SearchCreateWithoutUserInput, SearchUncheckedCreateWithoutUserInput> | SearchCreateWithoutUserInput[] | SearchUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SearchCreateOrConnectWithoutUserInput | SearchCreateOrConnectWithoutUserInput[]
+    upsert?: SearchUpsertWithWhereUniqueWithoutUserInput | SearchUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SearchCreateManyUserInputEnvelope
+    set?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    disconnect?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    delete?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    connect?: SearchWhereUniqueInput | SearchWhereUniqueInput[]
+    update?: SearchUpdateWithWhereUniqueWithoutUserInput | SearchUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SearchUpdateManyWithWhereWithoutUserInput | SearchUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SearchScalarWhereInput | SearchScalarWhereInput[]
   }
 
   export type TicketCommentCreateNestedManyWithoutTicketInput = {
@@ -70887,6 +72200,20 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPortfolioInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPortfolioInput, UserUpdateWithoutPortfolioInput>, UserUncheckedUpdateWithoutPortfolioInput>
+  }
+
+  export type UserCreateNestedOneWithoutSearchInput = {
+    create?: XOR<UserCreateWithoutSearchInput, UserUncheckedCreateWithoutSearchInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSearchInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSearchNestedInput = {
+    create?: XOR<UserCreateWithoutSearchInput, UserUncheckedCreateWithoutSearchInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSearchInput
+    upsert?: UserUpsertWithoutSearchInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSearchInput, UserUpdateWithoutSearchInput>, UserUncheckedUpdateWithoutSearchInput>
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -71386,6 +72713,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SearchCreateWithoutUserInput = {
+    id?: string
+    keyword: string
+    tableName: string
+    createdAt?: Date | string
+  }
+
+  export type SearchUncheckedCreateWithoutUserInput = {
+    id?: string
+    keyword: string
+    tableName: string
+    createdAt?: Date | string
+  }
+
+  export type SearchCreateOrConnectWithoutUserInput = {
+    where: SearchWhereUniqueInput
+    create: XOR<SearchCreateWithoutUserInput, SearchUncheckedCreateWithoutUserInput>
+  }
+
+  export type SearchCreateManyUserInputEnvelope = {
+    data: SearchCreateManyUserInput | SearchCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PortfolioUpsertWithWhereUniqueWithoutUserInput = {
     where: PortfolioWhereUniqueInput
     update: XOR<PortfolioUpdateWithoutUserInput, PortfolioUncheckedUpdateWithoutUserInput>
@@ -71503,6 +72854,33 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"UserSubscription"> | Date | string | null
   }
 
+  export type SearchUpsertWithWhereUniqueWithoutUserInput = {
+    where: SearchWhereUniqueInput
+    update: XOR<SearchUpdateWithoutUserInput, SearchUncheckedUpdateWithoutUserInput>
+    create: XOR<SearchCreateWithoutUserInput, SearchUncheckedCreateWithoutUserInput>
+  }
+
+  export type SearchUpdateWithWhereUniqueWithoutUserInput = {
+    where: SearchWhereUniqueInput
+    data: XOR<SearchUpdateWithoutUserInput, SearchUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SearchUpdateManyWithWhereWithoutUserInput = {
+    where: SearchScalarWhereInput
+    data: XOR<SearchUpdateManyMutationInput, SearchUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SearchScalarWhereInput = {
+    AND?: SearchScalarWhereInput | SearchScalarWhereInput[]
+    OR?: SearchScalarWhereInput[]
+    NOT?: SearchScalarWhereInput | SearchScalarWhereInput[]
+    id?: StringFilter<"Search"> | string
+    userId?: IntFilter<"Search"> | number
+    keyword?: StringFilter<"Search"> | string
+    tableName?: StringFilter<"Search"> | string
+    createdAt?: DateTimeFilter<"Search"> | Date | string
+  }
+
   export type TicketCommentCreateWithoutTicketInput = {
     id?: number
     text: string
@@ -71577,6 +72955,7 @@ export namespace Prisma {
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
+    search?: SearchCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTicketsInput = {
@@ -71595,6 +72974,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    search?: SearchUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTicketsInput = {
@@ -71674,6 +73054,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
+    search?: SearchUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTicketsInput = {
@@ -71692,6 +73073,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    search?: SearchUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TicketCreateWithoutDocumentsInput = {
@@ -71802,6 +73184,7 @@ export namespace Prisma {
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
+    search?: SearchCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTicketCommentsInput = {
@@ -71820,6 +73203,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    search?: SearchUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTicketCommentsInput = {
@@ -71887,6 +73271,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
+    search?: SearchUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTicketCommentsInput = {
@@ -71905,6 +73290,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    search?: SearchUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutUserSubscriptionInput = {
@@ -71923,6 +73309,7 @@ export namespace Prisma {
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
+    search?: SearchCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserSubscriptionInput = {
@@ -71941,6 +73328,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
+    search?: SearchUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserSubscriptionInput = {
@@ -71974,6 +73362,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
+    search?: SearchUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserSubscriptionInput = {
@@ -71992,6 +73381,7 @@ export namespace Prisma {
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
+    search?: SearchUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPortfolioInput = {
@@ -72010,6 +73400,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
+    search?: SearchCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPortfolioInput = {
@@ -72028,6 +73419,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    search?: SearchUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPortfolioInput = {
@@ -72061,6 +73453,7 @@ export namespace Prisma {
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
+    search?: SearchUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPortfolioInput = {
@@ -72076,6 +73469,98 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
+    UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    search?: SearchUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutSearchInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    isActive: boolean
+    profileImage?: string | null
+    plan?: number
+    role?: string
+    stripeId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    deletedAt?: Date | string | null
+    Portfolio?: PortfolioCreateNestedManyWithoutUserInput
+    ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
+    tickets?: TicketCreateNestedManyWithoutPostedByInput
+    UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSearchInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    isActive: boolean
+    profileImage?: string | null
+    plan?: number
+    role?: string
+    stripeId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    deletedAt?: Date | string | null
+    Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
+    ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
+    UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSearchInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSearchInput, UserUncheckedCreateWithoutSearchInput>
+  }
+
+  export type UserUpsertWithoutSearchInput = {
+    update: XOR<UserUpdateWithoutSearchInput, UserUncheckedUpdateWithoutSearchInput>
+    create: XOR<UserCreateWithoutSearchInput, UserUncheckedCreateWithoutSearchInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSearchInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSearchInput, UserUncheckedUpdateWithoutSearchInput>
+  }
+
+  export type UserUpdateWithoutSearchInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    plan?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
+    ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
+    tickets?: TicketUpdateManyWithoutPostedByNestedInput
+    UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSearchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    plan?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
@@ -72116,6 +73601,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+  }
+
+  export type SearchCreateManyUserInput = {
+    id?: string
+    keyword: string
+    tableName: string
+    createdAt?: Date | string
   }
 
   export type PortfolioUpdateWithoutUserInput = {
@@ -72227,6 +73719,27 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SearchUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SearchUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    keyword?: StringFieldUpdateOperationsInput | string
+    tableName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TicketCommentCreateManyTicketInput = {
