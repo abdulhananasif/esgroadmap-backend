@@ -54,8 +54,4 @@ toolRouter.post(
   saveSearch as unknown as express.RequestHandler
 );
 
-toolRouter.get("/test", (req, res) => {
-  res.send("Tool route working!");
-});
-
 export default toolRouter;
