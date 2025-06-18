@@ -279,12 +279,12 @@ export const saveSearch = async (req, res) => {
             return;
         }
         const allowedTableName = [
-            "carbon_reduction",
-            "waste_and_recycling",
-            "water_management",
-            "gender_equality",
-            "supply_chain",
-            "renewables",
+            "sentence_carbon",
+            "sentence_waste",
+            "sentence_water",
+            "sentence_gender",
+            "sentence_suppliers",
+            "sentence_renewables",
         ];
         if (!allowedTableName.includes(tableName)) {
             response.status = 400;
