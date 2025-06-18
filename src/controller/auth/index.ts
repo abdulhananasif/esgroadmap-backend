@@ -30,7 +30,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
   } = {};
   try {
     await validateRequest(signupSchema, req.body);
-    const {username, email, password} = req.body;
+    const {username, email, password, plan} = req.body;
     const existingUser = await prisma.user.findFirst({
       where: {email: email},
     });
