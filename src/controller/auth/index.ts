@@ -44,6 +44,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         email,
         password: hashedPassword,
         isActive: false,
+        stripeId,
       },
     });
     await sendEmail(email , "Account activation mail:" , emailContent )

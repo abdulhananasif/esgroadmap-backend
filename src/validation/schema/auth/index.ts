@@ -5,6 +5,7 @@ export const signupSchema = Joi.object({
   username: Joi.string().required().messages(errors.auth.signup.username),
   email: Joi.string().required().messages(errors.auth.signup.email),
   password: Joi.string().required().messages(errors.auth.signup.password),
+  stripeId: Joi.string().optional(),
 }).required();
 
 export const signinSchema = Joi.object({
