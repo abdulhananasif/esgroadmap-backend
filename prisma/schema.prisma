@@ -837,18 +837,21 @@ model User {
   email            String             @db.VarChar(255)
   password         String             @db.VarChar(255)
   isActive         Boolean            @map("is_active")
-  profileImage     String?            @map("profile_image") @db.Text
+  profileImage     String?            @default("default.png") @map("profile_image") @db.Text
   plan             Int                @default(1) @map("plan")
   role             String             @default("user") @db.VarChar(255)
   stripeId         String?            @default("stripe_id") @db.VarChar(255)
+  planId           String?
+  planName         String?
   createdAt        DateTime           @default(now()) @map("created_at")
   updatedAt        DateTime?          @map("updated_at")
   deletedAt        DateTime?          @map("deleted_at")
+  emailUpdate      String             @map("email_update")
   Portfolio        Portfolio[]
   ticketComments   TicketComment[]
   tickets          Ticket[]
   UserSubscription UserSubscription[]
-  search Search[]
+  search           Search[]
 
   @@map("users")
 }
@@ -1057,5 +1060,3 @@ model Search {
   @@index([userId], map: "Search_userId_idx")
   @@fulltext([keyword])
 }
-
-

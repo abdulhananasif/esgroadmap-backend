@@ -44,6 +44,9 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         email,
         password: hashedPassword,
         isActive: false,
+        planId,
+        planName,
+        emailUpdate: `${Date.now()}`,
       },
     });
     // await sendEmail(email , "Account activation mail:" , emailContent )
@@ -91,6 +94,7 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       role: user.role,
       planId: user.planId,
       planName: user.planName,
+      stripeId: user.stripeId,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
       deletedAt: user.deletedAt,
