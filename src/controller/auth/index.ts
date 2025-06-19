@@ -47,7 +47,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         stripeId,
       },
     });
-    await sendEmail(email , "Account activation mail:" , emailContent )
+    // await sendEmail(email , "Account activation mail:" , emailContent )
 
     response.status = 200;
     response.message = {
