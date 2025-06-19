@@ -6,6 +6,7 @@ import {
   editProfile,
   forgotPassword,
   generateOtp,
+  updateUser,
   verifyOtp,
 } from '../../controller/user/index.js';
 
@@ -38,5 +39,10 @@ userRouter.put(
   '/forgotPassword',
   forgotPassword as unknown as express.RequestHandler
 );
+
+userRouter.put('/update',
+  authenticateUser as unknown as express.RequestHandler,
+  updateUser as unknown as express.RequestHandler
+)
 
 export default userRouter;
