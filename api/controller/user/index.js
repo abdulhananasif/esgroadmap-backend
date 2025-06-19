@@ -75,6 +75,36 @@ export const editPassword = async (req, res) => {
     }
     res.status(response.status).json(response.message);
 };
+export const updateUser = async (req, res) => {
+    let response = {};
+    try {
+        const { planId, planName } = req.body;
+        const user = await prisma.user.findUnique({
+            where: {
+                id: req.user.id
+            }
+        });
+        if (!user) {
+            res.status(400).json({ message: "user not exist" });
+        }
+        await prisma.user.update({
+            where: {
+                id: req.user.id
+            },
+            data: {
+                planId,
+                planName,
+            }
+        });
+        response.status = 200;
+        response.message = "User updated";
+    }
+    catch (err) {
+        response.status = 400;
+        response.message = "user not updated";
+    }
+    res.status(response.status).json(response.message);
+};
 export const generateOtp = async (req, res) => {
     let response = {};
     try {

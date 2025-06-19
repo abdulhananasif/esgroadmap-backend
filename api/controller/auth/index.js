@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { generateAccessToken, generateRefreshToken, setAuthCookies, } from '../../utils/token.js';
 import { comparePasswords, hashPassword } from '../../utils/password.js';
+import { emailContent } from '../../utils/emailContent.js';
+import { sendEmail } from '../../utils/email.js';
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
 const refresh = process.env.REFRESH_TOKEN_SECRET;
@@ -31,7 +33,7 @@ export const signup = async (req, res) => {
                 emailUpdate: `${Date.now()}`,
             },
         });
-        // await sendEmail(email , "Account activation mail:" , emailContent )
+        await sendEmail(email, "Account activation mail:", emailContent);
         response.status = 200;
         response.message = {
             Message: 'Signup successful, Check your email account activation',
@@ -52,11 +54,12 @@ export const signin = async (req, res) => {
             where: { email },
         });
         if (!user) {
-            throw { message: 'User not exist! use a valid email' };
+            res.status(400).json({ message: "user not exist" });
+            return;
         }
         const isMatch = await comparePasswords(password, user.password);
         if (!isMatch) {
-            throw { message: 'Invalid credentials' };
+            res.status(400).json({ message: "password not mached" });
         }
         const accessToken = generateAccessToken(user.id);
         const refreshToken = generateRefreshToken(user.id);
@@ -77,12 +80,12 @@ export const signin = async (req, res) => {
             updatedAt: user.updatedAt,
             deletedAt: user.deletedAt,
         };
-        res.status(response.status).json(response.message);
     }
     catch (err) {
         response.status = 400;
         response.message = err.message;
     }
+    res.status(response.status).json(response.message);
 };
 export const regenerateToken = async (req, res) => {
     const { accessToken, refreshToken } = req.cookies;
