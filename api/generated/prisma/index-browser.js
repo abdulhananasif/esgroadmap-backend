@@ -845,9 +845,12 @@ exports.Prisma.UserScalarFieldEnum = {
   plan: 'plan',
   role: 'role',
   stripeId: 'stripeId',
+  planId: 'planId',
+  planName: 'planName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  emailUpdate: 'emailUpdate'
 };
 
 exports.Prisma.TicketScalarFieldEnum = {
@@ -1517,7 +1520,10 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   password: 'password',
   profileImage: 'profileImage',
   role: 'role',
-  stripeId: 'stripeId'
+  stripeId: 'stripeId',
+  planId: 'planId',
+  planName: 'planName',
+  emailUpdate: 'emailUpdate'
 };
 
 exports.Prisma.TicketOrderByRelevanceFieldEnum = {

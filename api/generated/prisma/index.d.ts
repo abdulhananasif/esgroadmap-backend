@@ -46247,9 +46247,12 @@ export namespace Prisma {
     plan: number | null
     role: string | null
     stripeId: string | null
+    planId: string | null
+    planName: string | null
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    emailUpdate: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -46262,9 +46265,12 @@ export namespace Prisma {
     plan: number | null
     role: string | null
     stripeId: string | null
+    planId: string | null
+    planName: string | null
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    emailUpdate: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -46277,9 +46283,12 @@ export namespace Prisma {
     plan: number
     role: number
     stripeId: number
+    planId: number
+    planName: number
     createdAt: number
     updatedAt: number
     deletedAt: number
+    emailUpdate: number
     _all: number
   }
 
@@ -46304,9 +46313,12 @@ export namespace Prisma {
     plan?: true
     role?: true
     stripeId?: true
+    planId?: true
+    planName?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    emailUpdate?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -46319,9 +46331,12 @@ export namespace Prisma {
     plan?: true
     role?: true
     stripeId?: true
+    planId?: true
+    planName?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    emailUpdate?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -46334,9 +46349,12 @@ export namespace Prisma {
     plan?: true
     role?: true
     stripeId?: true
+    planId?: true
+    planName?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    emailUpdate?: true
     _all?: true
   }
 
@@ -46436,9 +46454,12 @@ export namespace Prisma {
     plan: number
     role: string
     stripeId: string | null
+    planId: string | null
+    planName: string | null
     createdAt: Date
     updatedAt: Date | null
     deletedAt: Date | null
+    emailUpdate: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -46470,9 +46491,12 @@ export namespace Prisma {
     plan?: boolean
     role?: boolean
     stripeId?: boolean
+    planId?: boolean
+    planName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    emailUpdate?: boolean
     Portfolio?: boolean | User$PortfolioArgs<ExtArgs>
     ticketComments?: boolean | User$ticketCommentsArgs<ExtArgs>
     tickets?: boolean | User$ticketsArgs<ExtArgs>
@@ -46493,12 +46517,15 @@ export namespace Prisma {
     plan?: boolean
     role?: boolean
     stripeId?: boolean
+    planId?: boolean
+    planName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    emailUpdate?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "isActive" | "profileImage" | "plan" | "role" | "stripeId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "isActive" | "profileImage" | "plan" | "role" | "stripeId" | "planId" | "planName" | "createdAt" | "updatedAt" | "deletedAt" | "emailUpdate", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Portfolio?: boolean | User$PortfolioArgs<ExtArgs>
     ticketComments?: boolean | User$ticketCommentsArgs<ExtArgs>
@@ -46527,9 +46554,12 @@ export namespace Prisma {
       plan: number
       role: string
       stripeId: string | null
+      planId: string | null
+      planName: string | null
       createdAt: Date
       updatedAt: Date | null
       deletedAt: Date | null
+      emailUpdate: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -46913,9 +46943,12 @@ export namespace Prisma {
     readonly plan: FieldRef<"User", 'Int'>
     readonly role: FieldRef<"User", 'String'>
     readonly stripeId: FieldRef<"User", 'String'>
+    readonly planId: FieldRef<"User", 'String'>
+    readonly planName: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
+    readonly emailUpdate: FieldRef<"User", 'String'>
   }
     
 
@@ -55826,9 +55859,12 @@ export namespace Prisma {
     plan: 'plan',
     role: 'role',
     stripeId: 'stripeId',
+    planId: 'planId',
+    planName: 'planName',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt'
+    deletedAt: 'deletedAt',
+    emailUpdate: 'emailUpdate'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -56639,7 +56675,10 @@ export namespace Prisma {
     password: 'password',
     profileImage: 'profileImage',
     role: 'role',
-    stripeId: 'stripeId'
+    stripeId: 'stripeId',
+    planId: 'planId',
+    planName: 'planName',
+    emailUpdate: 'emailUpdate'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -61061,9 +61100,12 @@ export namespace Prisma {
     plan?: IntFilter<"User"> | number
     role?: StringFilter<"User"> | string
     stripeId?: StringNullableFilter<"User"> | string | null
+    planId?: StringNullableFilter<"User"> | string | null
+    planName?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    emailUpdate?: StringFilter<"User"> | string
     Portfolio?: PortfolioListRelationFilter
     ticketComments?: TicketCommentListRelationFilter
     tickets?: TicketListRelationFilter
@@ -61081,9 +61123,12 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrderInput | SortOrder
+    planId?: SortOrderInput | SortOrder
+    planName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    emailUpdate?: SortOrder
     Portfolio?: PortfolioOrderByRelationAggregateInput
     ticketComments?: TicketCommentOrderByRelationAggregateInput
     tickets?: TicketOrderByRelationAggregateInput
@@ -61105,9 +61150,12 @@ export namespace Prisma {
     plan?: IntFilter<"User"> | number
     role?: StringFilter<"User"> | string
     stripeId?: StringNullableFilter<"User"> | string | null
+    planId?: StringNullableFilter<"User"> | string | null
+    planName?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    emailUpdate?: StringFilter<"User"> | string
     Portfolio?: PortfolioListRelationFilter
     ticketComments?: TicketCommentListRelationFilter
     tickets?: TicketListRelationFilter
@@ -61125,9 +61173,12 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrderInput | SortOrder
+    planId?: SortOrderInput | SortOrder
+    planName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    emailUpdate?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -61148,9 +61199,12 @@ export namespace Prisma {
     plan?: IntWithAggregatesFilter<"User"> | number
     role?: StringWithAggregatesFilter<"User"> | string
     stripeId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    planId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    planName?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    emailUpdate?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type TicketWhereInput = {
@@ -66899,9 +66953,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
@@ -66919,9 +66976,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
@@ -66938,9 +66998,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
@@ -66958,9 +67021,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
@@ -66978,9 +67044,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -66992,9 +67061,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -67007,9 +67079,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
   }
 
   export type TicketCreateInput = {
@@ -71131,9 +71206,12 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrder
+    planId?: SortOrder
+    planName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    emailUpdate?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -71151,9 +71229,12 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrder
+    planId?: SortOrder
+    planName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    emailUpdate?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -71166,9 +71247,12 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrder
+    planId?: SortOrder
+    planName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    emailUpdate?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -72949,9 +73033,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
@@ -72968,9 +73055,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
@@ -73048,9 +73138,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
@@ -73067,9 +73160,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
@@ -73178,9 +73274,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
@@ -73197,9 +73296,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
@@ -73265,9 +73367,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
@@ -73284,9 +73389,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
@@ -73303,9 +73411,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
@@ -73322,9 +73433,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
@@ -73356,9 +73470,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
@@ -73375,9 +73492,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
@@ -73394,9 +73514,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionCreateNestedManyWithoutUserInput
@@ -73413,9 +73536,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
     UserSubscription?: UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
@@ -73447,9 +73573,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUpdateManyWithoutUserNestedInput
@@ -73466,9 +73595,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
     UserSubscription?: UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
@@ -73485,9 +73617,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentCreateNestedManyWithoutPostedByInput
     tickets?: TicketCreateNestedManyWithoutPostedByInput
@@ -73504,9 +73639,12 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    planId?: string | null
+    planName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     deletedAt?: Date | string | null
+    emailUpdate: string
     Portfolio?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     ticketComments?: TicketCommentUncheckedCreateNestedManyWithoutPostedByInput
     tickets?: TicketUncheckedCreateNestedManyWithoutPostedByInput
@@ -73538,9 +73676,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUpdateManyWithoutPostedByNestedInput
@@ -73557,9 +73698,12 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    planId?: NullableStringFieldUpdateOperationsInput | string | null
+    planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailUpdate?: StringFieldUpdateOperationsInput | string
     Portfolio?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     ticketComments?: TicketCommentUncheckedUpdateManyWithoutPostedByNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutPostedByNestedInput
