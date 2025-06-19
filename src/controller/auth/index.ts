@@ -49,7 +49,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         emailUpdate: `${Date.now()}`,
       },
     });
-    // await sendEmail(email , "Account activation mail:" , emailContent )
+    await sendEmail(email , "Account activation mail:" , emailContent )
 
     response.status = 200;
     response.message = {
@@ -74,11 +74,12 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       where: {email},
     });
     if (!user) {
-      throw {message: 'User not exist! use a valid email'};
+      res.status(400).json({message: "user not exist"});
+      return;
     }
     const isMatch = await comparePasswords(password, user.password);
     if (!isMatch) {
-      throw {message: 'Invalid credentials'};
+      res.status(400).json({message: "password not mached"});
     }
     const accessToken = generateAccessToken(user.id);
     const refreshToken = generateRefreshToken(user.id);
@@ -99,11 +100,11 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
       updatedAt: user.updatedAt,
       deletedAt: user.deletedAt,
     };
-    res.status(response.status).json(response.message);
   } catch (err: any) {
     response.status = 400;
     response.message = err.message;
   }
+  res.status(response.status).json(response.message);
 };
 
 export const regenerateToken = async (
