@@ -5,8 +5,6 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { generateAccessToken, generateRefreshToken, setAuthCookies, } from '../../utils/token.js';
 import { comparePasswords, hashPassword } from '../../utils/password.js';
-import { emailContent } from '../../utils/emailContent.js';
-import { sendEmail } from '../../utils/email.js';
 dotenv.config();
 const access = process.env.ACCESS_TOKEN_SECRET;
 const refresh = process.env.REFRESH_TOKEN_SECRET;
@@ -14,7 +12,7 @@ export const signup = async (req, res) => {
     let response = {};
     try {
         await validateRequest(signupSchema, req.body);
-        const { username, email, password, stripeId } = req.body;
+        const { username, email, password, planId, planName } = req.body;
         const existingUser = await prisma.user.findFirst({
             where: { email: email },
         });
@@ -28,10 +26,12 @@ export const signup = async (req, res) => {
                 email,
                 password: hashedPassword,
                 isActive: false,
-                stripeId,
+                planId,
+                planName,
+                emailUpdate: `${Date.now()}`,
             },
         });
-        await sendEmail(email, "Account activation mail:", emailContent);
+        // await sendEmail(email , "Account activation mail:" , emailContent )
         response.status = 200;
         response.message = {
             Message: 'Signup successful, Check your email account activation',
@@ -70,6 +70,8 @@ export const signin = async (req, res) => {
             profileImage: user.profileImage,
             plan: user.plan,
             role: user.role,
+            planId: user.planId,
+            planName: user.planName,
             stripeId: user.stripeId,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
