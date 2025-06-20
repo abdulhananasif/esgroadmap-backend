@@ -30,7 +30,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
   } = {};
   try {
     await validateRequest(signupSchema, req.body);
-    const {username, email, password} = req.body;
+    const {username, email, password, customerId, planId, planName} = req.body;
     const existingUser = await prisma.user.findFirst({
       where: {email: email},
     });
@@ -45,6 +45,9 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         password: hashedPassword,
         isActive: false,
         emailUpdate: `${Date.now()}`,
+        customerId,
+        planId,
+        planName,
       },
     });
     await sendEmail(email , "Account activation mail:" , emailContent )
@@ -104,6 +107,33 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
     response.message = err.message;
   }
   res.status(response.status).json(response.message);
+};
+
+export const findUser = async (req:Request , res:Response):Promise<void> => {
+  let response:{
+    status?: number;
+    message?: string | Object | Array<object>;
+  }={};
+  try{
+    const {email} = req.body
+    const findUser = await prisma.user.findFirst({
+      where:{
+        email: email,
+      }
+    })
+    if(findUser){
+      response.status = 200;
+      response.message = {message: true};
+    }else{
+      response.status = 200;
+      response.message = {message: false}
+    }
+  }catch(err: any){
+    console.log("🚀 ~ findUser ~ err:", err)
+    response.status = 400;
+    response.message = "Failed to find user"
+  }
+    res.status(response.status).json(response.message);
 };
 
 export const regenerateToken = async (
