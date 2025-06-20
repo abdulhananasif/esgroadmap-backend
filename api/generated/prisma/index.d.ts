@@ -46247,6 +46247,7 @@ export namespace Prisma {
     plan: number | null
     role: string | null
     stripeId: string | null
+    customerId: string | null
     planId: string | null
     planName: string | null
     createdAt: Date | null
@@ -46265,6 +46266,7 @@ export namespace Prisma {
     plan: number | null
     role: string | null
     stripeId: string | null
+    customerId: string | null
     planId: string | null
     planName: string | null
     createdAt: Date | null
@@ -46283,6 +46285,7 @@ export namespace Prisma {
     plan: number
     role: number
     stripeId: number
+    customerId: number
     planId: number
     planName: number
     createdAt: number
@@ -46313,6 +46316,7 @@ export namespace Prisma {
     plan?: true
     role?: true
     stripeId?: true
+    customerId?: true
     planId?: true
     planName?: true
     createdAt?: true
@@ -46331,6 +46335,7 @@ export namespace Prisma {
     plan?: true
     role?: true
     stripeId?: true
+    customerId?: true
     planId?: true
     planName?: true
     createdAt?: true
@@ -46349,6 +46354,7 @@ export namespace Prisma {
     plan?: true
     role?: true
     stripeId?: true
+    customerId?: true
     planId?: true
     planName?: true
     createdAt?: true
@@ -46454,6 +46460,7 @@ export namespace Prisma {
     plan: number
     role: string
     stripeId: string | null
+    customerId: string | null
     planId: string | null
     planName: string | null
     createdAt: Date
@@ -46491,6 +46498,7 @@ export namespace Prisma {
     plan?: boolean
     role?: boolean
     stripeId?: boolean
+    customerId?: boolean
     planId?: boolean
     planName?: boolean
     createdAt?: boolean
@@ -46517,6 +46525,7 @@ export namespace Prisma {
     plan?: boolean
     role?: boolean
     stripeId?: boolean
+    customerId?: boolean
     planId?: boolean
     planName?: boolean
     createdAt?: boolean
@@ -46525,7 +46534,7 @@ export namespace Prisma {
     emailUpdate?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "isActive" | "profileImage" | "plan" | "role" | "stripeId" | "planId" | "planName" | "createdAt" | "updatedAt" | "deletedAt" | "emailUpdate", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "isActive" | "profileImage" | "plan" | "role" | "stripeId" | "customerId" | "planId" | "planName" | "createdAt" | "updatedAt" | "deletedAt" | "emailUpdate", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Portfolio?: boolean | User$PortfolioArgs<ExtArgs>
     ticketComments?: boolean | User$ticketCommentsArgs<ExtArgs>
@@ -46554,6 +46563,7 @@ export namespace Prisma {
       plan: number
       role: string
       stripeId: string | null
+      customerId: string | null
       planId: string | null
       planName: string | null
       createdAt: Date
@@ -46943,6 +46953,7 @@ export namespace Prisma {
     readonly plan: FieldRef<"User", 'Int'>
     readonly role: FieldRef<"User", 'String'>
     readonly stripeId: FieldRef<"User", 'String'>
+    readonly customerId: FieldRef<"User", 'String'>
     readonly planId: FieldRef<"User", 'String'>
     readonly planName: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -55859,6 +55870,7 @@ export namespace Prisma {
     plan: 'plan',
     role: 'role',
     stripeId: 'stripeId',
+    customerId: 'customerId',
     planId: 'planId',
     planName: 'planName',
     createdAt: 'createdAt',
@@ -56676,6 +56688,7 @@ export namespace Prisma {
     profileImage: 'profileImage',
     role: 'role',
     stripeId: 'stripeId',
+    customerId: 'customerId',
     planId: 'planId',
     planName: 'planName',
     emailUpdate: 'emailUpdate'
@@ -61100,6 +61113,7 @@ export namespace Prisma {
     plan?: IntFilter<"User"> | number
     role?: StringFilter<"User"> | string
     stripeId?: StringNullableFilter<"User"> | string | null
+    customerId?: StringNullableFilter<"User"> | string | null
     planId?: StringNullableFilter<"User"> | string | null
     planName?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -61123,6 +61137,7 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrderInput | SortOrder
+    customerId?: SortOrderInput | SortOrder
     planId?: SortOrderInput | SortOrder
     planName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -61150,6 +61165,7 @@ export namespace Prisma {
     plan?: IntFilter<"User"> | number
     role?: StringFilter<"User"> | string
     stripeId?: StringNullableFilter<"User"> | string | null
+    customerId?: StringNullableFilter<"User"> | string | null
     planId?: StringNullableFilter<"User"> | string | null
     planName?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -61173,6 +61189,7 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrderInput | SortOrder
+    customerId?: SortOrderInput | SortOrder
     planId?: SortOrderInput | SortOrder
     planName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -61199,6 +61216,7 @@ export namespace Prisma {
     plan?: IntWithAggregatesFilter<"User"> | number
     role?: StringWithAggregatesFilter<"User"> | string
     stripeId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    customerId?: StringNullableWithAggregatesFilter<"User"> | string | null
     planId?: StringNullableWithAggregatesFilter<"User"> | string | null
     planName?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -66953,6 +66971,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -66976,6 +66995,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -66998,6 +67018,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67021,6 +67042,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67044,6 +67066,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -67061,6 +67084,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67079,6 +67103,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -71206,6 +71231,7 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrder
+    customerId?: SortOrder
     planId?: SortOrder
     planName?: SortOrder
     createdAt?: SortOrder
@@ -71229,6 +71255,7 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrder
+    customerId?: SortOrder
     planId?: SortOrder
     planName?: SortOrder
     createdAt?: SortOrder
@@ -71247,6 +71274,7 @@ export namespace Prisma {
     plan?: SortOrder
     role?: SortOrder
     stripeId?: SortOrder
+    customerId?: SortOrder
     planId?: SortOrder
     planName?: SortOrder
     createdAt?: SortOrder
@@ -73033,6 +73061,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73055,6 +73084,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73138,6 +73168,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73160,6 +73191,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73274,6 +73306,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73296,6 +73329,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73367,6 +73401,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73389,6 +73424,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73411,6 +73447,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73433,6 +73470,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73470,6 +73508,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73492,6 +73531,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73514,6 +73554,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73536,6 +73577,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73573,6 +73615,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73595,6 +73638,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73617,6 +73661,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73639,6 +73684,7 @@ export namespace Prisma {
     plan?: number
     role?: string
     stripeId?: string | null
+    customerId?: string | null
     planId?: string | null
     planName?: string | null
     createdAt?: Date | string
@@ -73676,6 +73722,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73698,6 +73745,7 @@ export namespace Prisma {
     plan?: IntFieldUpdateOperationsInput | number
     role?: StringFieldUpdateOperationsInput | string
     stripeId?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     planId?: NullableStringFieldUpdateOperationsInput | string | null
     planName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

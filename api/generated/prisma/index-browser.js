@@ -845,6 +845,7 @@ exports.Prisma.UserScalarFieldEnum = {
   plan: 'plan',
   role: 'role',
   stripeId: 'stripeId',
+  customerId: 'customerId',
   planId: 'planId',
   planName: 'planName',
   createdAt: 'createdAt',
@@ -1521,6 +1522,7 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   profileImage: 'profileImage',
   role: 'role',
   stripeId: 'stripeId',
+  customerId: 'customerId',
   planId: 'planId',
   planName: 'planName',
   emailUpdate: 'emailUpdate'
