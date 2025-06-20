@@ -14,7 +14,7 @@ export const signup = async (req, res) => {
     let response = {};
     try {
         await validateRequest(signupSchema, req.body);
-        const { username, email, password, customerId, planId, planName } = req.body;
+        const { username, email, password, customerId, planId, planName, subscriptionId } = req.body;
         const existingUser = await prisma.user.findFirst({
             where: { email: email },
         });
@@ -32,6 +32,7 @@ export const signup = async (req, res) => {
                 customerId,
                 planId,
                 planName,
+                subscriptionId,
             },
         });
         await sendEmail(email, "Account activation mail:", emailContent);
@@ -78,6 +79,7 @@ export const signin = async (req, res) => {
             planId: user.planId,
             planName: user.planName,
             stripeId: user.stripeId,
+            subscriptionid: user.subscriptionId,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
             deletedAt: user.deletedAt,
