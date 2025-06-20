@@ -3,11 +3,8 @@ import { prisma } from '../../server.js';
 export const products = async (req, res) => {
     try {
         const response = await paddle.get('/products');
-        console.log("🚀 ~ products ~ response:", response);
         const prices = await paddle.get('/prices');
-        console.log("🚀 ~ products ~ prices:", prices);
-        const subscription = await paddle.get('/subscriptions');
-        res.status(200).json({ product: response.data, prices: prices.data, subscription: subscription.data });
+        res.status(200).json({ product: response.data, prices: prices.data });
     }
     catch (error) {
         console.error('Error fetching Paddle products:', error);
