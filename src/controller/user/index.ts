@@ -98,7 +98,7 @@ export const updateUser = async (req: AuthenticatedRequest , res:Response):Promi
     message?: Object | string | Array<object> ;
   } = {};
   try{
-    const { planId , planName } = req.body;
+    const { planId , planName , customerId } = req.body;
     const user = await prisma.user.findUnique({
       where:{
         id: req.user.id
@@ -114,6 +114,7 @@ export const updateUser = async (req: AuthenticatedRequest , res:Response):Promi
       data: {
         planId,
         planName,
+        customerId,
       }
     })
     response.status = 200;
