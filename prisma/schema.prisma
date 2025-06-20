@@ -841,6 +841,7 @@ model User {
   plan             Int                @default(1) @map("plan")
   role             String             @default("user") @db.VarChar(255)
   stripeId         String?            @default("stripe_id") @db.VarChar(255)
+  customerId       String?
   planId           String?
   planName         String?
   createdAt        DateTime           @default(now()) @map("created_at")
