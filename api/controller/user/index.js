@@ -78,7 +78,7 @@ export const editPassword = async (req, res) => {
 export const updateUser = async (req, res) => {
     let response = {};
     try {
-        const { planId, planName } = req.body;
+        const { planId, planName, customerId } = req.body;
         const user = await prisma.user.findUnique({
             where: {
                 id: req.user.id
@@ -94,6 +94,7 @@ export const updateUser = async (req, res) => {
             data: {
                 planId,
                 planName,
+                customerId,
             }
         });
         response.status = 200;

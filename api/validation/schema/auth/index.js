@@ -4,8 +4,6 @@ export const signupSchema = Joi.object({
     username: Joi.string().required().messages(errors.auth.signup.username),
     email: Joi.string().required().messages(errors.auth.signup.email),
     password: Joi.string().required().messages(errors.auth.signup.password),
-    planId: Joi.string().optional(),
-    planName: Joi.string().optional(),
 }).required();
 export const signinSchema = Joi.object({
     email: Joi.string().required().messages(errors.auth.signin.email),
