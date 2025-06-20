@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 const allowedorigins = [
   'https://esgroadmap-frontend.vercel.app',
+  'https://esgroadmap-fe-lemon.vercel.app',
   'http://localhost:5173',
 ];
 app.use(
