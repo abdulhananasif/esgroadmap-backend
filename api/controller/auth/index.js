@@ -14,7 +14,7 @@ export const signup = async (req, res) => {
     let response = {};
     try {
         await validateRequest(signupSchema, req.body);
-        const { username, email, password } = req.body;
+        const { username, email, password, customerId, planId, planName } = req.body;
         const existingUser = await prisma.user.findFirst({
             where: { email: email },
         });
@@ -29,6 +29,9 @@ export const signup = async (req, res) => {
                 password: hashedPassword,
                 isActive: false,
                 emailUpdate: `${Date.now()}`,
+                customerId,
+                planId,
+                planName,
             },
         });
         await sendEmail(email, "Account activation mail:", emailContent);
@@ -83,6 +86,31 @@ export const signin = async (req, res) => {
     catch (err) {
         response.status = 400;
         response.message = err.message;
+    }
+    res.status(response.status).json(response.message);
+};
+export const findUser = async (req, res) => {
+    let response = {};
+    try {
+        const { email } = req.body;
+        const findUser = await prisma.user.findFirst({
+            where: {
+                email: email,
+            }
+        });
+        if (findUser) {
+            response.status = 200;
+            response.message = { message: true };
+        }
+        else {
+            response.status = 200;
+            response.message = { message: false };
+        }
+    }
+    catch (err) {
+        console.log("🚀 ~ findUser ~ err:", err);
+        response.status = 400;
+        response.message = "Failed to find user";
     }
     res.status(response.status).json(response.message);
 };
