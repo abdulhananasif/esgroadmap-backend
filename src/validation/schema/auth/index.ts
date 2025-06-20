@@ -8,6 +8,7 @@ export const signupSchema = Joi.object({
   customerId: Joi.string().optional(),
   planId: Joi.string().optional(),
   planName: Joi.string().optional(),
+  subscriptionId: Joi.string().optional(),
 }).required();
 
 export const signinSchema = Joi.object({
