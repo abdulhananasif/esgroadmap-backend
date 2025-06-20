@@ -7,7 +7,7 @@ export const signupSchema = Joi.object({
   password: Joi.string().required().messages(errors.auth.signup.password),
   customerId: Joi.string().optional(),
   planId: Joi.string().optional(),
-  planNmae: Joi.string().optional(),
+  planName: Joi.string().optional(),
 }).required();
 
 export const signinSchema = Joi.object({
